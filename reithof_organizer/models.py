@@ -5,7 +5,7 @@ class Besitzer(models.Model):
     nachname = models.CharField(max_length=100)
     geburtstag = models.DateTimeField(blank=True)
     erstellt_am = models.DateTimeField(auto_now_add=True)
-    mistpunkte = models.IntegerField(max_length=50)
+    mistpunkte = models.IntegerField()
 
 class Pferd(models.Model):
     offizieller_name = models.CharField(max_length=100)
