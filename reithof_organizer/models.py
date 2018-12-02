@@ -1,6 +1,7 @@
 from django.db import models
 
-class Besitzer(models.Model):
+class Person(models.Model):
+    pferd = models.ForeignKey(on_delete=models.DO_NOTHING)
     vorname = models.CharField(max_length=100)
     nachname = models.CharField(max_length=100)
     geburtstag = models.DateTimeField(blank=True)
