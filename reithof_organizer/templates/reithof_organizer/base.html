@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Unser Stall</title>
+    <title>{% block title %}Reithof - Unser Stall{% endblock %}</title>
     {% load staticfiles %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'reithof_organizer/stylesheet.css' %}"/>﻿
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'reithof_organizer/stylesheet.css' %}"/>﻿
 </head>
 <body>
 <nav class="navbar navbar">
@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="{% url 'index' %}">
+                    <a href="{% url 'unser_stall' %}">
                         <span class="glyphicon glyphicon-grain" aria-hidden="true"></span>&nbsp;
                        Unser Stall
                     </a>
@@ -58,5 +58,8 @@
         </div>
     </div>
 </nav>
+
+{% block body %}
+{% endblock %}
 </body>
 </html>

@@ -3,7 +3,7 @@ from django.conf.urls import url
 
 urlpatterns = [
     #Unser Stall
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.index, name='unser_stall'),
     #Über Uns
     url(r'^ueberuns/$', views.ueber_uns, name='ueber_uns'),
     #Aktuell
