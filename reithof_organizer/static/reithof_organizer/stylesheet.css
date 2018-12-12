@@ -1,26 +1,21 @@
 
 body{
-    background-color: white;
+    background-color: #8db600;
 }
 
 .navbar{
-    background-color: darkgreen;
+    background-color: #ffffff;
 }
 
 .navbar-brand{
     color: darkorange;
 }
 
-a{
-    color: darkorange;
-}
 
 a:hover{
-    color: darkgreen;
-    background-color: darkorange;
+    color: #8db600;
 }
 
 ul.nav a:hover{
-    color: darkgreen;
-    background-color: darkorange;
+    color: #8db600;
 }

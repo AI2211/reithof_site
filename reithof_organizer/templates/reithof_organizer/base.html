@@ -2,63 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Reithof - Unser Stall{% endblock %}</title>
+    <title>{% block title %}Ritterstall{% endblock %}</title>
     {% load staticfiles %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, intitial-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'reithof_organizer/stylesheet.css' %}"/>﻿
 </head>
 <body>
-<nav class="navbar navbar">
-    <div class="container-fluid">
 
-        <!-- Header -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Reithof</a>
-        </div>
+<nav class="navbar navbar-expand-md navbar-light ">
+  <a class="navbar-brand active" href="#">Ritterstall</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-        <!-- Items -->
-        <div class="collapse navbar-collapse" id="topNavBar">
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="{% url 'unser_stall' %}">
-                        <span class="glyphicon glyphicon-grain" aria-hidden="true"></span>&nbsp;
-                       Unser Stall
-                    </a>
-                </li>
-                <li class="">
-                    <a href="{% url 'aktuell' %}">
-                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;
-                        Aktuelles
-                    </a>
-                </li>
-                <li class="">
-                    <a href="{% url 'ueber_uns' %}">
-                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;
-                       Über Uns
-                    </a>
-                </li>
-                <li class="">
-                    <a href="{% url 'unsere_pferde' %}">
-                        <span class="glyphicon glyphicon-knight" aria-hidden="true"></span>&nbsp;
-                        Unsere Pferde
-                    </a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                    <a href="#">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
-                        Mitgliederbereich
-                    </a>
-                </li>
-            </ul>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'ueber_uns' %}">Über Uns <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'unsere_pferde' %}">Unsere Pferde</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Aktuelles
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'kurse' %}">Kurse</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'facebook' %}">Facebook News</a>
         </div>
-    </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'galerie' %}">Galerie</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+		<li class="nav-item">
+			<a class="nav-link" href="#">Mitgliederbereich</a>
+		</li>
+	</ul>
+  </div>
 </nav>
-
 {% block body %}
 {% endblock %}
 </body>

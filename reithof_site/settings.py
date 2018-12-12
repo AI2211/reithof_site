@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reithof_organizer.apps.ReithofOrganizerConfig',
+    'mitgliederbereich.apps.MitgliederbereichConfig',
 ]
 
 MIDDLEWARE = [
