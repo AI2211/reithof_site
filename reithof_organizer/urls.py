@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^galerie/$', views.galerie, name='galerie'),
     #Unsere Pferde
     url(r'^unsere_pferde/$', views.unsere_pferde, name='unsere_pferde'),
+    #Registrierung
+    url(r'^register/$', views.register, name='register'),
 ]
