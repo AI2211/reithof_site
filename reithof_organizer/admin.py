@@ -4,10 +4,21 @@ from django import forms
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserCreationForm
-
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import Profile
 
-admin.site.register(Profile)
+class UserAdmin(BaseUserAdmin):
+    add_form = UserCreationForm
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'first_name', 'last_name', 'is_bot_flag', 'password1', 'password2')}
+        ),
+    )
+
+
+
+admin.site.register(Profile, UserAdmin)
 admin.site.register(Pferd)
 admin.site.unregister(Group)
 
