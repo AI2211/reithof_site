@@ -4,12 +4,14 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from .forms import ProfileForm
+from .models import Profile
 
 def index(request):
     return render(request, 'reithof_organizer/unser_stall.html')
 
 def ueber_uns(request):
-    return render(request, 'reithof_organizer/ueber_uns.html')
+    all_profiles = Profile.objects.all()
+    return render(request, 'reithof_organizer/ueber_uns.html', {'all_profiles': all_profiles})
 
 def aktuell(request):
     return render(request, 'reithof_organizer/aktuell.html')
@@ -27,8 +29,6 @@ def register(request):
         vorname = profile_form.cleaned_data['vorname']
         nachname = profile_form.cleaned_data['nachname']
         email = profile_form.cleaned_data['email']
-        passwort = profile_form.cleaned_data['password']
-        user.set_password(passwort)
         profile_form.save()
     context = {
         "profile_form": profile_form,
