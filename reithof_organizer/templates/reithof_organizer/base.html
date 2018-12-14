@@ -47,13 +47,29 @@
                     </a>
                 </li>
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                    <a href="{% url 'register' %}">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
-                        Mitgliederbereich
-                    </a>
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="">
+                        <a href="{% url 'logout' %}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
+                            Ausloggen
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="">
+                        <a href="{% url 'login' %}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
+                            Einloggen
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'register' %}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
+                            Registrierung
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>

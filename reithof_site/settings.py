@@ -124,3 +124,5 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'reithof_organizer.Profile'
+
+LOGIN_REDIRECT_URL = 'unser_stall'
