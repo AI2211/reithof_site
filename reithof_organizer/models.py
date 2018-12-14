@@ -18,11 +18,9 @@ class Pferd(models.Model):
         verbose_name = _('Pferd')
         verbose_name_plural = _('Pferde')
 
-#class Profile(AbstractUser):
-#    mistpunkte = models.IntegerField(null=True)
-
-
 class Profile(AbstractBaseUser, PermissionsMixin):
+    #Pferd
+    pferd = models.ForeignKey(Pferd, on_delete=models.CASCADE, blank=True, null=True)
     #Username
     username = models.CharField(_('Username'), max_length=150)
     #Vorname

@@ -51,6 +51,9 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <li class="">
+                        <p>Willkommen {{ user.vorname }}!</p>
+                    </li>
+                    <li class="">
                         <a href="{% url 'logout' %}">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
                             Ausloggen
