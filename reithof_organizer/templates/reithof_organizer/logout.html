@@ -1,0 +1,8 @@
+{% extends 'reithof_organizer/base.html' %}
+{% block title %}Login{% endblock %}
+{% block body %}
+    <h2>Du hast dich erfolgreich ausgeloggt</h2>
+                <div class="panel-footer">
+                    <a href="{% url 'login' %}">Wieder anmelden?</a>
+                </div>
+{% endblock %}
