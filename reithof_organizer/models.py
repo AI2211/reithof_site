@@ -7,6 +7,15 @@ from django.utils import timezone
 
 from .managers import ProfileUserManager
 
+class Eintrag(models.Model):
+    titel = models.CharField(max_length=250)
+    nachricht = models.TextField()
+    erstellt_am = models.DateTimeField(_('Erstellt am'), default=timezone.now)
+
+    class Meta:
+        verbose_name = _('Eintrag')
+        verbose_name_plural = _('Einträge')
+
 
 class Pferd(models.Model):
     offizieller_name = models.CharField(max_length=100)
@@ -18,9 +27,12 @@ class Pferd(models.Model):
         verbose_name = _('Pferd')
         verbose_name_plural = _('Pferde')
 
+
 class Profile(AbstractBaseUser, PermissionsMixin):
     #Pferd
     pferd = models.ForeignKey(Pferd, on_delete=models.CASCADE, blank=True, null=True)
+    #Einträge
+    eintrag = models.ForeignKey(Eintrag, on_delete=models.CASCADE, blank=True, null=True)
     #Username
     username = models.CharField(_('Username'), max_length=150)
     #Vorname
