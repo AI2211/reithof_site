@@ -126,4 +126,4 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'reithof_organizer.Profile'
 
-LOGIN_REDIRECT_URL = 'unser_stall'
+LOGIN_REDIRECT_URL = 'ritterstall'

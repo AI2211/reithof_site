@@ -1,5 +1,6 @@
 from . import views
 from django.conf.urls import url
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     #Unser Stall
@@ -13,5 +14,11 @@ urlpatterns = [
     #Unsere Pferde
     url(r'^unsere_pferde/$', views.unsere_pferde, name='unsere_pferde'),
     #Facebooknews
-    url(r'^facebooknews/$', views.facebooknews, name='facebook')
+    url(r'^facebooknews/$', views.facebooknews, name='facebook'),
+    # Registrierung
+    url(r'^register/$', views.register, name='register'),
+    # Login
+    url(r'^login/$', auth_views.LoginView.as_view(template_name='reithof_organizer/login.html'), name='login'),
+    # Logout
+    url(r'^logout/$', auth_views.LogoutView.as_view(template_name='reithof_organizer/logout.html'), name='logout')
 ]

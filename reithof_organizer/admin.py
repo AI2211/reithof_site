@@ -36,11 +36,3 @@ class ProfileAdmin(UserAdmin):
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Pferd)
 admin.site.unregister(Group)
-
-# class ProfileCreationForm(UserCreationForm):
-#     password1 = forms.CharField(label='Passwort', widget=forms.PasswordInput)
-#     password2 = forms.CharField(label='Passwort bestätigen', widget=forms.PasswordInput)
-#
-#     class Meta:
-#         model = Profile
-#         fields = ['vorname', 'nachname', 'email', 'geburtsdatum', 'password1', 'password2']
