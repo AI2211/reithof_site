@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>{% block title %}Ritterstall{% endblock %}</title>
     {% load staticfiles %}
-    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, intitial-scale=1">
 	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -17,7 +15,7 @@
 <body>
 
 <nav class="navbar navbar-expand-md navbar-light ">
-  <a class="navbar-brand active" href="#">Ritterstall</a>
+  <a class="navbar-brand active" href="{% url 'ritterstall' %}">Ritterstall</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -48,6 +46,12 @@
                 {% if user.is_authenticated %}
                     <li class="">
                         <p>Willkommen {{ user.vorname }}!</p>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
+                            Mitgliederbereich
+                        </a>
                     </li>
                     <li class="">
                         <a href="{% url 'logout' %}">

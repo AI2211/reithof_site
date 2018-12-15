@@ -12,7 +12,8 @@ def index(request):
 
 def ueber_uns(request):
     all_profiles = Profile.objects.all()
-    return render(request, 'reithof_organizer/ueber_uns.html', {'all_profiles': all_profiles})
+    context = {'all_profiles': all_profiles}
+    return render(request, 'reithof_organizer/ueber_uns.html', context)
 
 def kurse(request):
     return render(request, 'reithof_organizer/kurse.html')
