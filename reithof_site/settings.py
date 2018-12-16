@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reithof_organizer.apps.ReithofOrganizerConfig',
+    'mitgliederbereich.apps.MitgliederbereichConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,7 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'reithof_organizer.Profile'
+
+LOGIN_REDIRECT_URL = 'ritterstall'
