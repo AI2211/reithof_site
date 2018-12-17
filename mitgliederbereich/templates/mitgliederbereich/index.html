@@ -2,9 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block title %}Reithof - Mein Profil{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'reithof_organizer/stylesheet.css' %}"/>﻿
 </head>
 <body>
+    <nav class="navbar navbar">
+    <div class="container-fluid">
 
+        <!-- Header -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Reithof</a>
+        </div>
+
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{% url 'unser_stall' %}">
+                        <span class="glyphicon glyphicon-grain" aria-hidden="true"></span>&nbsp;
+                       Unser Stall
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'aktuell' %}">
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;
+                        Aktuelles
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'ueber_uns' %}">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;
+                       Über Uns
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'unsere_pferde' %}">
+                        <span class="glyphicon glyphicon-knight" aria-hidden="true"></span>&nbsp;
+                        Unsere Pferde
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
+                        Mitgliederbereich
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% block body %}
+{% endblock %}
 </body>
 </html>
