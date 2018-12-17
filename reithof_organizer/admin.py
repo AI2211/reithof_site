@@ -15,7 +15,7 @@ class ProfileAdmin(UserAdmin):
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        (_('Persönliche Daten'), {'fields': ('vorname', 'nachname', 'email', 'geburtsdatum', 'mistpunkte', 'pferd')}),
+        (_('Persönliche Daten'), {'fields': ('vorname', 'nachname', 'email', 'geburtsdatum', 'mistpunkte', 'pferd', 'eintrag')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),

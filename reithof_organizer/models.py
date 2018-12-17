@@ -1,16 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, AbstractUser
+from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
+from django.db.models import signals
 
 from .managers import ProfileUserManager
+
 
 class Eintrag(models.Model):
     titel = models.CharField(max_length=250)
     nachricht = models.TextField()
     erstellt_am = models.DateTimeField(_('Erstellt am'), default=timezone.now)
+    kategorie = models.CharField(max_length=100)
 
     class Meta:
         verbose_name = _('Eintrag')
@@ -26,6 +30,9 @@ class Pferd(models.Model):
     class Meta:
         verbose_name = _('Pferd')
         verbose_name_plural = _('Pferde')
+
+    def __str__(self):
+        return self.offizieller_name
 
 
 class Profile(AbstractBaseUser, PermissionsMixin):
@@ -75,7 +82,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
     #aktiv
     is_active = models.BooleanField(
         _('aktiv'),
-        default=True,
+        default=False,
         help_text=_(
             'Designates whether this user should be treated as active. '
             'Unselect this instead of deleting accounts.'

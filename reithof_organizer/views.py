@@ -4,6 +4,9 @@ from django.contrib.auth import logout
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
+from django.core.mail import send_mail
+
+from reithof_site import settings
 from .forms import ProfileForm
 from .models import Profile
 
@@ -35,6 +38,7 @@ def register(request):
             vorname = profile_form.cleaned_data['vorname']
             nachname = profile_form.cleaned_data['nachname']
             email = profile_form.cleaned_data['email']
+            #send_mail('Hello from Test', 'Hello I am Test', settings.EMAIL_HOST_USER, [email], fail_silently=False)
             profile_form.save()
             return redirect('login')
     else:
