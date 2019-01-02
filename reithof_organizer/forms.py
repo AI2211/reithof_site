@@ -21,7 +21,7 @@ class ProfileForm(UserCreationForm):
         label=_("Passwort bestätigen"),
         widget=forms.PasswordInput,
         strip=False,
-        help_text=_("Enter the same password as before, for verification."),
+        help_text=_("Passwort bestätigen"),
     )
 
 
