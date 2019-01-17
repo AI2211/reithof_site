@@ -20,6 +20,9 @@ class Eintrag(models.Model):
         verbose_name = _('Eintrag')
         verbose_name_plural = _('Einträge')
 
+    def __str__(self):
+        return self.titel
+
 
 class Pferd(models.Model):
     offizieller_name = models.CharField(max_length=100)
