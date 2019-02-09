@@ -9,9 +9,15 @@ from django.core.mail import send_mail
 from reithof_site import settings
 from .forms import ProfileForm
 from .models import Profile
+#import requests
 
 def index(request):
     return render(request, 'reithof_organizer/ritterstall.html')
+
+#def index(request):
+    #r = requests.get('http://httpbin.org/status/418')
+    #print(r.text)
+    #return render(request, '<pre>' + r.text + '</pre>')
 
 def ueber_uns(request):
     all_profiles = Profile.objects.all()

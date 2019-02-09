@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Pferd
+from .models import Profile, Pferd, Eintrag
 from django import forms
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -7,7 +7,6 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserCreationFor
 from django.utils.translation import ugettext_lazy as _
 from .forms import ProfileForm, ProfileChangeForm
 from django.contrib.auth.admin import UserAdmin
-from .models import Profile
 
 class ProfileAdmin(UserAdmin):
     add_form = ProfileForm
@@ -35,4 +34,5 @@ class ProfileAdmin(UserAdmin):
 
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Pferd)
+admin.site.register(Eintrag)
 admin.site.unregister(Group)
