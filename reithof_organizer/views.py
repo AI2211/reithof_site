@@ -33,8 +33,14 @@ def galerie(request):
 def unsere_pferde(request):
     return render(request, 'reithof_organizer/unsere_pferde.html')
 
-def facebooknews(request):
-    return render(request, 'reithof_organizer/facebooknews.html')
+def news(request):
+    return render(request, 'reithof_organizer/news.html')
+
+def kontakt(request):
+    return render(request, 'reithof_organizer/kontakt.html')
+
+def impressum(request):
+    return render(request, 'reithof_organizer/impressum.html')
 
 def register(request):
     if request.method == "POST":
