@@ -5,42 +5,77 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from django.core.mail import send_mail
+from django.core.mail import BadHeaderError, EmailMessage
+from django.http import HttpResponse
 
 from reithof_site import settings
 from .forms import ProfileForm
 from .models import Profile
-#import requests
+
+
+# import requests
 
 def index(request):
     return render(request, 'reithof_organizer/ritterstall.html')
 
-#def index(request):
-    #r = requests.get('http://httpbin.org/status/418')
-    #print(r.text)
-    #return render(request, '<pre>' + r.text + '</pre>')
+
+# def index(request):
+# r = requests.get('http://httpbin.org/status/418')
+# print(r.text)
+# return render(request, '<pre>' + r.text + '</pre>')
 
 def ueber_uns(request):
     all_profiles = Profile.objects.all()
     context = {'all_profiles': all_profiles}
     return render(request, 'reithof_organizer/ueber_uns.html', context)
 
+
 def kurse(request):
     return render(request, 'reithof_organizer/kurse.html')
+
 
 def galerie(request):
     return render(request, 'reithof_organizer/galerie.html')
 
+
 def unsere_pferde(request):
     return render(request, 'reithof_organizer/unsere_pferde.html')
+
 
 def news(request):
     return render(request, 'reithof_organizer/news.html')
 
+
 def kontakt(request):
-    return render(request, 'reithof_organizer/kontakt.html')
+    if request.method == "POST":
+        vorname = request.POST.get('vorname')
+        nachname = request.POST.get('nachname')
+        email = request.POST.get('email')
+        betreff = request.POST.get('betreff')
+        nachricht = request.POST.get('nachricht')
+        alles = "%s %s via %s %s: %s" % (
+            vorname,
+            nachname,
+            email,
+            betreff,
+            nachricht
+        )
+        try:
+            send_mail(betreff,
+                      alles,
+                      email,
+                      ['djangotest255@gmail.com'],
+                      fail_silently=False)
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+        return HttpResponse('Vielen Dank für deine Nachricht')
+    else:
+        return render(request, 'reithof_organizer/kontakt.html')
+
 
 def impressum(request):
     return render(request, 'reithof_organizer/impressum.html')
+
 
 def register(request):
     if request.method == "POST":
@@ -50,7 +85,7 @@ def register(request):
             vorname = profile_form.cleaned_data['vorname']
             nachname = profile_form.cleaned_data['nachname']
             email = profile_form.cleaned_data['email']
-            #send_mail('Hello from Test', 'Hello I am Test', settings.EMAIL_HOST_USER, [email], fail_silently=False)
+            # send_mail('Hello from Test', 'Hello I am Test', settings.EMAIL_HOST_USER, [email], fail_silently=False)
             profile_form.save()
             return redirect('login')
     else:

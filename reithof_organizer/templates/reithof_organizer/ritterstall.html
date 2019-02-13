@@ -3,15 +3,19 @@
 {% block title %}Unser Stall{% endblock %}
 {% block body %}
 
+    <!--Titelbild-->
     <div class="bgimg-1">
         <div class="carousel-caption">
             <h1 class="display-1"><strong>Ritterstall</strong></h1>
             <hr style="height: 2px; width: 70%;">
             <p class="display-4" style="color: white; font-size: 30px;">Hier fühlen sich alle ponywohl!</p>
-            <button type="button" class="btn btn-lg">Kontakt</button>
+            <form method="get" action="{% url 'kontakt' %}">
+                <button type="submit" class="btn btn-lg">Kontakt</button>
+            </form>
         </div>
     </div>
-    <!--Welcome-->
+
+    <!--Willkommen-->
     <div class="container-fluid padding">
         <div class="row welcome text-center">
             <div class="col-12">
@@ -27,7 +31,7 @@
         </div>
     </div>
 
-    <!--Main Text-->
+    <!--Konzept-->
     <div class="container-fluid padding" style="color: white; background-color:#ff8300">
         <div class="row welcome text-center">
             <div class="col-12">
@@ -56,7 +60,7 @@
         </div>
     </div>
 
-
+    <!--Reitanlage-->
     <div class="container-fluid padding" style="color: black; background-color:white">
         <div class="row welcome text-center">
             <div class="col-12">
@@ -86,7 +90,7 @@
         </div>
     </div>
 
-
+    <!--Reiterstübchen-->
     <div class="container-fluid padding" style="color: white; background-color:#ff8300">
         <div class="row welcome text-center">
             <div class="col-12">
