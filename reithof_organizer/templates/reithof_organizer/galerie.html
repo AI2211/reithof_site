@@ -1,5 +1,10 @@
 {% extends 'reithof_organizer/base.html' %}
+{% load static %}
 {% block title %}Galerie{% endblock %}
 {% block body %}
-<h1>Galerie</h1>
+    <h1>Galerie</h1>
+
+    {% for file in dirs %}
+        <img source="{{ file }}" class="img-responsive"/>
+    {% endfor %}
 {% endblock %}
