@@ -1,4 +1,5 @@
 import os
+import sys
 
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
@@ -39,10 +40,12 @@ def kurse(request):
 def galerie(request):
     path = "reithof_organizer/static/reithof_organizer/images"
     dirs = os.listdir(path)
+
     for file in dirs:
-       print (file)
+        print(file)
+    images_dict = {key: i for i, key in enumerate(dirs)}
     #files = os.listdir(os.path.join(settings.STATIC_ROOT, "reithof_organizer/images"))
-    return render(request, 'reithof_organizer/galerie.html')
+    return render(request, 'reithof_organizer/galerie.html', {'images_dict': images_dict})
 
 
 def unsere_pferde(request):

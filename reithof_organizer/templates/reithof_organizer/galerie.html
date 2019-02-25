@@ -3,8 +3,7 @@
 {% block title %}Galerie{% endblock %}
 {% block body %}
     <h1>Galerie</h1>
-
-    {% for file in dirs %}
-        <img source="{{ file }}" class="img-responsive"/>
+    {% for key, value in images_dict.items %}
+        <img src="../../static/reithof_organizer/images/{{  key }}" class="img-responsive"/>
     {% endfor %}
 {% endblock %}
