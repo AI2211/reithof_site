@@ -5,6 +5,37 @@
 <div class="container">
 <div class="shadow-sm p-3 my-3 bg-white rounded">
 <h1>News</h1>
+{% for eintrag in all_eintrag %}
+    <legend>
+    <h1>Artikel vom: {{ eintrag.erstellt_am }}</h1>
+    <h1>{{ eintrag.titel }}</h1>
+    <h2>{{ eintrag.nachricht }}</h2>
+    <h2>{{ eintrag.kategorie }}</h2>
+    <h3>Ertellt von: {{ eintrag.autor.vorname }} {{ eintrag.autor.nachname }}</h3>
+    </legend>
+{% endfor %}
+{% if user.is_superuser %}
+    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <span class="text-danger small">{{ field.errors }}</span>
+                                </div>
+                                <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+                                <div class="col-sm-10">{{ field }}</div>
+                            </div>
+                        {% endfor %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+{% endif %}
 {% endblock %}
 </div>
 </div>

@@ -10,39 +10,13 @@ from django.db.models import signals
 from .managers import ProfileUserManager
 
 
-class Eintrag(models.Model):
-    titel = models.CharField(max_length=250)
-    nachricht = models.TextField()
-    erstellt_am = models.DateTimeField(_('Erstellt am'), default=timezone.now)
-    kategorie = models.CharField(max_length=100)
-
-    class Meta:
-        verbose_name = _('Eintrag')
-        verbose_name_plural = _('Einträge')
-
-    def __str__(self):
-        return self.titel
-
-
-class Pferd(models.Model):
-    offizieller_name = models.CharField(max_length=100)
-    rufname = models.CharField(max_length=100)
-    geburtstag = models.DateTimeField(blank=True)
-    kategorie = models.CharField(max_length=100)
-
-    class Meta:
-        verbose_name = _('Pferd')
-        verbose_name_plural = _('Pferde')
-
-    def __str__(self):
-        return self.offizieller_name
 
 
 class Profile(AbstractBaseUser, PermissionsMixin):
     #Pferd
-    pferd = models.ForeignKey(Pferd, on_delete=models.CASCADE, blank=True, null=True)
+    #pferd = models.ForeignKey(Pferd, on_delete=models.CASCADE, blank=True, null=True)
     #Einträge
-    eintrag = models.ForeignKey(Eintrag, on_delete=models.CASCADE, blank=True, null=True)
+    #eintrag = models.ForeignKey(Eintrag, on_delete=models.CASCADE, blank=True, null=True)
     #Username
     username = models.CharField(_('Username'), max_length=150)
     #Vorname
@@ -119,3 +93,31 @@ class Profile(AbstractBaseUser, PermissionsMixin):
         Sends an email to this User.
         '''
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+class Eintrag(models.Model):
+    autor = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    titel = models.CharField(max_length=250)
+    nachricht = models.TextField()
+    erstellt_am = models.DateTimeField(_('Erstellt am'), default=timezone.now)
+    kategorie = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = _('Eintrag')
+        verbose_name_plural = _('Einträge')
+
+    def __str__(self):
+        return self.titel
+
+class Pferd(models.Model):
+    besitzer = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    offizieller_name = models.CharField(max_length=100)
+    rufname = models.CharField(max_length=100)
+    geburtstag = models.DateTimeField(blank=True)
+    kategorie = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = _('Pferd')
+        verbose_name_plural = _('Pferde')
+
+    def __str__(self):
+        return self.offizieller_name

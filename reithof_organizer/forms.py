@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile
+from .models import Eintrag
 from django.contrib.auth.forms import get_user_model, authenticate, password_validation
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -30,7 +30,11 @@ class ProfileForm(UserCreationForm):
         fields = ['email', 'vorname', 'nachname', 'password1', 'password2']
 
 class ProfileChangeForm(UserChangeForm):
-
     class Meta:
         model = get_user_model()
         fields = '__all__'
+
+class CreateEintrag(forms.ModelForm):
+    class Meta:
+        model = Eintrag
+        fields = ['titel', 'nachricht', 'kategorie']

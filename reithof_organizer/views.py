@@ -12,8 +12,8 @@ from django.core.mail import BadHeaderError, EmailMessage
 from django.http import HttpResponse
 
 from reithof_site import settings
-from .forms import ProfileForm
-from .models import Profile
+from .forms import ProfileForm, CreateEintrag
+from .models import Profile, Eintrag
 
 
 # import requests
@@ -53,7 +53,17 @@ def unsere_pferde(request):
 
 
 def news(request):
-    return render(request, 'reithof_organizer/news.html')
+    all_eintrag = Eintrag.objects.all()
+
+    if request.method == "POST":
+        form = CreateEintrag(request.POST or None)
+        if form.is_valid():
+            eintrag = form.save(commit=False)
+            eintrag.autor = request.user
+            eintrag.save()
+    else:
+        form = CreateEintrag()
+    return render(request, 'reithof_organizer/news.html', {'form': form, 'all_eintrag': all_eintrag})
 
 
 def kontakt(request):
