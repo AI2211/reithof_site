@@ -9,12 +9,15 @@ urlpatterns = [
     url(r'^ueberuns/$', views.ueber_uns, name='ueber_uns'),
     #reithof.de/aktuell/
     url(r'^kurse/$', views.kurse, name='kurse'),
+    url(r'^news/$', views.news, name='news'),
     #Galerie
     url(r'^galerie/$', views.galerie, name='galerie'),
     #Unsere Pferde
     url(r'^unsere_pferde/$', views.unsere_pferde, name='unsere_pferde'),
-    #Facebooknews
-    url(r'^facebooknews/$', views.facebooknews, name='facebook'),
+    #Kontakt
+    url(r'^kontakt/$', views.kontakt, name='kontakt'),
+    #Impressum
+    url(r'^impressum/$', views.impressum, name='impressum'),
     # Registrierung
     url(r'^register/$', views.register, name='register'),
     # Login

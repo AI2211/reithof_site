@@ -1,5 +1,147 @@
 {% extends 'reithof_organizer/base.html' %}
+{% load static %}
 {% block title %}Unser Stall{% endblock %}
 {% block body %}
-<h1>Unser Stall</h1>
+
+    <!--Titelbild-->
+    <div class="bgimg-1">
+        <div class="carousel-caption">
+            <h1 class="display-1"><strong>Ritterstall</strong></h1>
+            <hr style="height: 2px; width: 70%;">
+            <p class="display-4" style="color: white; font-size: 30px;">Hier fühlen sich alle ponywohl!</p>
+            <form method="get" action="{% url 'kontakt' %}">
+                <button type="submit" class="btn btn-lg">Kontakt</button>
+            </form>
+        </div>
+    </div>
+
+    <!--Willkommen-->
+    <div class="container-fluid padding">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Ritterstall Herborn</h1>
+            </div>
+            <hr>
+            <div class="col-12">
+                <p class="lead">Willkommen beim Ritterstall Herborn! Lorem ipsum dolor sit amet, consetetur sadipscing
+                    elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                    voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                    takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </div>
+        </div>
+    </div>
+
+    <!--Konzept-->
+    <div class="container-fluid padding" style="color: white; background-color:#ff8300">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Konzept</h1>
+                <hr style="border-top: 2px solid white;">
+            </div>
+        </div>
+        <div class="row padding">
+            <div class="col-lg-6">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum.</p>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'reithof_organizer/images/beispielbild.jpg' %}" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <!--Reitanlage-->
+    <div class="container-fluid padding" style="color: black; background-color:white">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Reitanlage</h1>
+                <hr style="border-top: 2px solid #ff8300;">
+            </div>
+        </div>
+        <div class="row padding">
+            <div class="col-lg-6">
+                <img src="{% static 'reithof_organizer/images/beispielbild.jpg' %}" class="img-fluid">
+            </div>
+            <div class="col-lg-6">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum.</p>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Reiterstübchen-->
+    <div class="container-fluid padding" style="color: white; background-color:#ff8300">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Reiterstübchen</h1>
+                <hr style="border-top: 2px solid white;">
+            </div>
+        </div>
+        <div class="row padding">
+            <div class="col-lg-6">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum.</p>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'reithof_organizer/images/beispielbild.jpg' %}" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+
+    <!--Preise-->
+    <div class="container-fluid padding" style="color: black; background-color:white">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Preise</h1>
+                <hr style="border-top: 2px solid #ff8300;">
+            </div>
+        </div>
+        <div class="row padding" style="text-align:center">
+            <div class="col-lg-4">
+                <p>Sommerstall</p>
+                <h3>250€/Mo</h3>
+            </div>
+            <div class="col-lg-4">
+                <p>Winterstall</p>
+                <h3>250€/Mo</h3>
+            </div>
+            <div class="col-lg-4">
+                <p>Sommerkoppel</p>
+                <h3>250€/Mo</h3>
+            </div>
+
+        </div>
+    </div>
 {% endblock %}
