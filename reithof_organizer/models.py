@@ -100,6 +100,7 @@ class Eintrag(models.Model):
     nachricht = models.TextField()
     erstellt_am = models.DateTimeField(_('Erstellt am'), default=timezone.now)
     kategorie = models.CharField(max_length=100)
+    bild = models.ImageField(blank=True)
 
     class Meta:
         verbose_name = _('Eintrag')

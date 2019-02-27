@@ -56,7 +56,7 @@ def news(request):
     all_eintrag = Eintrag.objects.all()
 
     if request.method == "POST":
-        form = CreateEintrag(request.POST or None)
+        form = CreateEintrag(request.POST, request.FILES)
         if form.is_valid():
             eintrag = form.save(commit=False)
             eintrag.autor = request.user

@@ -11,6 +11,11 @@
     <h1>{{ eintrag.titel }}</h1>
     <h2>{{ eintrag.nachricht }}</h2>
     <h2>{{ eintrag.kategorie }}</h2>
+        {% if eintrag.bild %}
+    <img src="{{ eintrag.bild.url }}">
+            {% else %}
+            <h2>KEIN BILD</h2>
+        {% endif %}
     <h3>Ertellt von: {{ eintrag.autor.vorname }} {{ eintrag.autor.nachname }}</h3>
     </legend>
 {% endfor %}

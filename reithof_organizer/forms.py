@@ -37,4 +37,4 @@ class ProfileChangeForm(UserChangeForm):
 class CreateEintrag(forms.ModelForm):
     class Meta:
         model = Eintrag
-        fields = ['titel', 'nachricht', 'kategorie']
+        fields = ['titel', 'nachricht', 'kategorie', 'bild']
