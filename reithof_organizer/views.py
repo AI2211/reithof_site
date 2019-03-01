@@ -127,3 +127,9 @@ def delete_kurs(request, pk):
     kurs.delete()
 
     return render(request, 'reithof_organizer/deleted_kurs.html', {'kurs': kurs})
+
+def delete_news(request, pk):
+    eintrag = get_object_or_404(Eintrag, pk=pk)
+    eintrag.delete()
+
+    return render(request, 'reithof_organizer/deleted_news.html', {'eintrag': eintrag})

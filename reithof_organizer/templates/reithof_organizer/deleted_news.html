@@ -1,0 +1,8 @@
+{% extends 'reithof_organizer/base.html' %}
+{% block title %}News gelöscht{% endblock %}
+{% block body %}
+<h1>{{ eintrag.titel }} gelöscht!</h1>
+    <script> window.setTimeout(function(){
+    window.location.href = "{% url 'news' %}";
+  }, 3000);;</script>
+{% endblock %}
