@@ -1,5 +1,5 @@
 from django import forms
-from .models import Eintrag
+from .models import Eintrag, Kurs
 from django.contrib.auth.forms import get_user_model, authenticate, password_validation
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -38,3 +38,8 @@ class CreateEintrag(forms.ModelForm):
     class Meta:
         model = Eintrag
         fields = ['titel', 'nachricht', 'kategorie', 'bild']
+
+class CreateKurs(forms.ModelForm):
+    class Meta:
+        model = Kurs
+        fields = '__all__'

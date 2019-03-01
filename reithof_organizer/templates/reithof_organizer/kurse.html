@@ -2,4 +2,38 @@
 {% block title %}Aktuell{% endblock %}
 {% block body %}
 <h1>Aktuell</h1>
+    {% for kurs in all_kurs %}
+    <legend>
+    <h1>{{ kurs.name }}</h1>
+    <h2>{{ kurs.beschreibung }}</h2>
+        {% if kurs.bild %}
+    <img src="{{ kurs.bild.url }}">
+            {% else %}
+            <h2>KEIN BILD</h2>
+        {% endif %}
+    <a class="btn btn-primary" href="{% url 'delete_kurs' kurs.pk %}">Löschen</a>
+    </legend>
+{% endfor %}
+    {% if user.is_superuser %}
+    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <span class="text-danger small">{{ field.errors }}</span>
+                                </div>
+                                <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+                                <div class="col-sm-10">{{ field }}</div>
+                            </div>
+                        {% endfor %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+{% endif %}
 {% endblock %}

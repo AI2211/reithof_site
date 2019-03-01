@@ -122,3 +122,15 @@ class Pferd(models.Model):
 
     def __str__(self):
         return self.offizieller_name
+
+class Kurs(models.Model):
+    name = models.CharField(max_length=100)
+    beschreibung = models.CharField(max_length=200)
+    bild = models.ImageField(blank=True)
+
+    class Meta:
+        verbose_name = _('Kurs')
+        verbose_name_plural = _('Kurse')
+
+    def __str__(self):
+        return self.name

@@ -12,8 +12,8 @@ from django.core.mail import BadHeaderError, EmailMessage
 from django.http import HttpResponse
 
 from reithof_site import settings
-from .forms import ProfileForm, CreateEintrag
-from .models import Profile, Eintrag
+from .forms import ProfileForm, CreateEintrag, CreateKurs
+from .models import Profile, Eintrag, Kurs
 
 
 # import requests
@@ -34,7 +34,16 @@ def ueber_uns(request):
 
 
 def kurse(request):
-    return render(request, 'reithof_organizer/kurse.html')
+    all_kurs = Kurs.objects.all()
+
+    if request.method == "POST":
+        form = CreateKurs(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            form = CreateKurs()
+    else:
+        form = CreateKurs()
+    return render(request, 'reithof_organizer/kurse.html', {'all_kurs': all_kurs, 'form': form})
 
 
 def galerie(request):
@@ -111,3 +120,10 @@ def register(request):
     else:
         profile_form = ProfileForm()
     return render(request, 'reithof_organizer/register.html', {'profile_form': profile_form})
+
+
+def delete_kurs(request, pk):
+    kurs = get_object_or_404(Kurs, pk=pk)
+    kurs.delete()
+
+    return render(request, 'reithof_organizer/deleted_kurs.html', {'kurs': kurs})

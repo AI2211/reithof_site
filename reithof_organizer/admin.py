@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Pferd, Eintrag
+from .models import Profile, Pferd, Eintrag, Kurs
 from django import forms
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -35,4 +35,5 @@ class ProfileAdmin(UserAdmin):
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Pferd)
 admin.site.register(Eintrag)
+admin.site.register(Kurs)
 admin.site.unregister(Group)

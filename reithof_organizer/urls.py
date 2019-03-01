@@ -23,5 +23,7 @@ urlpatterns = [
     # Login
     url(r'^login/$', auth_views.LoginView.as_view(template_name='reithof_organizer/login.html'), name='login'),
     # Logout
-    url(r'^logout/$', auth_views.LogoutView.as_view(template_name='reithof_organizer/logout.html'), name='logout')
+    url(r'^logout/$', auth_views.LogoutView.as_view(template_name='reithof_organizer/logout.html'), name='logout'),
+
+    url(r'^delete_kurs/(?P<pk>[0-9]+)/$', views.delete_kurs, name='delete_kurs'),
 ]
