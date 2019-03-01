@@ -133,3 +133,4 @@ def delete_news(request, pk):
     eintrag.delete()
 
     return render(request, 'reithof_organizer/deleted_news.html', {'eintrag': eintrag})
+

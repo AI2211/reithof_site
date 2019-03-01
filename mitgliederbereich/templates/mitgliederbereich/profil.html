@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil</title>
+</head>
+<body>
+
+<h2>Vorname: {{ user.vorname }}</h2>
+<h2>Nachname: {{ user.nachname }}</h2>
+<h2>Letzte Anmeldung: {{ user.last_login }}</h2>
+<h2>E-Mail: {{ user.email }}</h2>
+<h2>Mistpunkte: {{ user.mistpunkte }}</h2>
+<h2>Erstellt am: {{ user.date_joined }}</h2>
+{% if user.is_active %}
+<h2>Account ist aktiviert</h2>
+{% endif %}
+{% if user.is_staff %}
+<h2>Account ist ein Mitarbeiter</h2>
+{% endif %}
+{% if user.is_superuser %}
+<h2>Account ist ein Admin</h2>
+{% endif %}
+
+{% if user.is_superuser %}
+    {% for profile in all_profiles %}
+        {% if not profile.is_superuser %}
+            <h2>User: {{ profile.email }}</h2>
+            {% if profile.is_active %}
+            <a class="btn btn-primary" href="{% url 'deactivate_profile' profile.pk %}">Deaktivieren</a>
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'activate_profile' profile.pk %}">Aktivieren</a>
+            {% endif %}
+            {% if profile.is_staff %}
+            <a class="btn btn-primary" href="{% url 'not_staff_profile' profile.pk %}">Feuern</a>
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'staff_profile' profile.pk %}">Zum Mitarbeiter machen</a>
+            {% endif %}
+            <a class="btn btn-primary" href="{% url 'delete_profil' profile.pk %}">Löschen</a>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+
+</body>
+</html>
