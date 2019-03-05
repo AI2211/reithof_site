@@ -1,0 +1,8 @@
+{% extends 'reithof_organizer/base.html' %}
+{% block title %}Leaflet Test{% endblock %}
+{% block body %}
+    {% load leaflet_tags %}
+    <head>    {% leaflet_js %}
+    {% leaflet_css %}</head>
+{% leaflet_map "yourmap" %}
+{% endblock %}

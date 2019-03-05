@@ -134,3 +134,6 @@ def delete_news(request, pk):
 
     return render(request, 'reithof_organizer/deleted_news.html', {'eintrag': eintrag})
 
+def leaflet_test(request):
+
+    return render(request, 'reithof_organizer/leaflet_test.html')

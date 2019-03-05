@@ -35,4 +35,6 @@ urlpatterns = [
 
     path(r'delete_kurs/<int:pk>/', views.delete_kurs, name='delete_kurs'),
     path(r'delete_news/<int:pk>/', views.delete_news, name='delete_news'),
+
+    path(r'leaflet', views.leaflet_test, name='leaflet')
 ]
