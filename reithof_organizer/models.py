@@ -18,7 +18,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
     #Einträge
     #eintrag = models.ForeignKey(Eintrag, on_delete=models.CASCADE, blank=True, null=True)
     #Username
-    username = models.CharField(_('Username'), max_length=150)
+    username = models.CharField(_('Username'), max_length=150, blank=True)
     #Vorname
     vorname = models.CharField(_('Vorname'), max_length=50, blank=True)
     #Nachname
@@ -36,9 +36,9 @@ class Profile(AbstractBaseUser, PermissionsMixin):
         },
     )
     #Geburtsdatum
-    geburtsdatum = models.DateField(_('Geburtsdatum'), auto_now_add=False, auto_now=False, null=True)
+    geburtsdatum = models.DateField(_('Geburtsdatum'), auto_now_add=False, auto_now=False, null=True, blank=True)
     #Mistpunkte
-    mistpunkte = models.IntegerField(null=True)
+    mistpunkte = models.IntegerField(null=True, blank=True)
     #Erstellt am
     date_joined = models.DateTimeField(_('Erstellt am'), default=timezone.now)
     #Ist Superuser

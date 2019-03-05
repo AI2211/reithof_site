@@ -15,6 +15,10 @@ urlpatterns = [
     path(r'staff_profil/<int:pk>/', views.profile_set_staff, name='staff_profile'),
     path(r'not_staff_profil/<int:pk>/', views.profile_set_not_staff, name='not_staff_profile'),
 
+    path(r'email-change/', views.email_change, name='email_change'),
+    path(r'email-change-done/', views.email_change_done, name='email_change_done'),
+
+
     path(r'password-change/', auth_views.PasswordChangeView.as_view(template_name='mitgliederbereich/password_change.html'), name='password_change'),
 
     path(r'password-change-done/', auth_views.PasswordChangeDoneView.as_view(template_name='mitgliederbereich/password_change_done.html'), name='password_change_done'),
