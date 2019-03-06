@@ -5,9 +5,16 @@ from django.utils.translation import ugettext_lazy as _
 class EmailChangeForm(forms.Form):
 
     error_messages = {
+        'password_incorrect': _("Das Passwort ist nicht korrekt!"),
         'email_mismatch': _("Die E-Mail-Adresse stimmen nicht überein!"),
         'not_changed': _("Es wird die selbe E-Mail-Adresse genutzt!"),
     }
+
+    password = forms.CharField(
+        label=_("Passwort"),
+        strip=False,
+        widget=forms.PasswordInput(attrs={'autofocus': True}),
+    )
 
     new_email1 = forms.EmailField(
         label=_("Neue E-Mail-Adresse"),
@@ -18,6 +25,8 @@ class EmailChangeForm(forms.Form):
         label=_("Neue E-Mail-Adresse bestätigen"),
         widget=forms.EmailInput,
     )
+
+    field_order = ['password', 'new_email1', 'new_email2']
 
     def __init__(self, user, *args, **kwargs):
          self.user = user
@@ -44,6 +53,18 @@ class EmailChangeForm(forms.Form):
                     code='email_mismatch',
                 )
         return new_email2
+
+    def clean_password(self):
+        """
+        Validate that the old_password field is correct.
+        """
+        password = self.cleaned_data["password"]
+        if not self.user.check_password(password):
+            raise forms.ValidationError(
+                self.error_messages['password_incorrect'],
+                code='password_incorrect',
+            )
+        return password
 
     def save(self, commit=True):
         email = self.cleaned_data["new_email1"]

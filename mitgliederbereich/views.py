@@ -49,12 +49,12 @@ def profile_delete(request, pk):
 
 def email_change(request):
     if request.method == 'POST':
-        form = EmailChangeForm(get_user_model(), data=request.POST)
+        form = EmailChangeForm(request.user, data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('email_change_done')
     else:
-        form = EmailChangeForm(get_user_model())
+        form = EmailChangeForm(request.user)
     return render(request, 'mitgliederbereich/email_change.html', {'form': form})
 
 def email_change_done(request):
