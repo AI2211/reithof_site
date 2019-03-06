@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.forms import get_user_model
+
 
 class EmailChangeForm(forms.Form):
 
@@ -20,8 +20,8 @@ class EmailChangeForm(forms.Form):
     )
 
     def __init__(self, user, *args, **kwargs):
-        self.user = user
-        super(EmailChangeForm, self).__init__(*args, **kwargs)
+         self.user = user
+         super(EmailChangeForm, self).__init__(*args, **kwargs)
 
     def clean_new_email1(self):
         old_email = self.user.email
@@ -48,6 +48,8 @@ class EmailChangeForm(forms.Form):
     def save(self, commit=True):
         email = self.cleaned_data["new_email1"]
         self.user.email = email
+
+
         if commit:
             self.user.save()
         return self.user

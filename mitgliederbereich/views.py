@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.contrib.auth.forms import get_user_model
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import EmailChangeForm
 
@@ -48,14 +48,14 @@ def profile_delete(request, pk):
     return render(request, 'mitgliederbereich/deleted_user.html',  {'profile': profile})
 
 def email_change(request):
-    form = EmailChangeForm()
-    if request.method=='POST':
-        form = EmailChangeForm(Profile, request.POST)
+    if request.method == 'POST':
+        form = EmailChangeForm(get_user_model(), data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('email_change_done')
     else:
-        return render(request, 'mitgliederbereich/email_change.html', {'form':form})
+        form = EmailChangeForm(get_user_model())
+    return render(request, 'mitgliederbereich/email_change.html', {'form': form})
 
 def email_change_done(request):
     return render(request, 'mitgliederbereich/email_change_done.html')
