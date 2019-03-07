@@ -35,7 +35,7 @@ def ueber_uns(request):
 
 def kurse(request):
     all_kurs = Kurs.objects.all()
-
+    kurs_bool = "false"
     if request.method == "POST":
         form = CreateKurs(request.POST, request.FILES)
         if form.is_valid():
@@ -127,6 +127,22 @@ def delete_kurs(request, pk):
     kurs.delete()
 
     return render(request, 'reithof_organizer/deleted_kurs.html', {'kurs': kurs})
+
+def eintragen_kurs(request, pk):
+    kurs = get_object_or_404(Kurs, pk=pk)
+    kurs_bool = "true"
+    request.user.Kurse.add(kurs)
+    request.user.save()
+
+    return render(request, 'reithof_organizer/added_user_kurs.html', {'kurs': kurs})
+
+def austragen_kurs(request, pk):
+    kurs = get_object_or_404(Kurs, pk=pk)
+    kurs_bool = "false"
+    request.user.Kurse.remove(kurs)
+    request.user.save()
+
+    return render(request, 'reithof_organizer/removed_user_kurs.html', {'kurs': kurs})
 
 def delete_news(request, pk):
     eintrag = get_object_or_404(Eintrag, pk=pk)

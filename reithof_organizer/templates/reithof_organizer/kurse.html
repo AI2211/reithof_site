@@ -11,9 +11,35 @@
             {% else %}
             <h2>KEIN BILD</h2>
         {% endif %}
+    {% if user.is_staff %}
+       <h2>Mitgliederliste: </h2>
+        {% if kurs.profile_set.all %}
+            {% for profile in kurs.profile_set.all %}
+                <h2>{{ profile.email }}</h2>
+            {% endfor %}
+            {% else %}
+            <h3>-->Keine Anmeldungen<--</h3>
+            {% endif %}
+    {% endif %}
+    <a class="btn btn-primary" href="{% url 'eintragen_kurs' kurs.pk %}" id="kurs_button{{ kurs.pk }}">Kurs beitreten</a>
     <a class="btn btn-primary" href="{% url 'delete_kurs' kurs.pk %}">Löschen</a>
+    {% if user.Kurse.all %}
+        {% for user_kurs in user.Kurse.all %}
+            {% if user_kurs.pk == kurs.pk %}
+                        <h2>Für diesen Kurs eingetragen</h2>
+                        <script>document.getElementById("kurs_button{{ kurs.pk }}").href="{% url 'ausgetragen_kurs' kurs.pk %}";
+                        document.getElementById("kurs_button{{ kurs.pk }}").innerHTML="Kurs verlassen";</script>
+            {% else %}
+
+
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
     </legend>
 {% endfor %}
+
+
     {% if user.is_superuser %}
     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>

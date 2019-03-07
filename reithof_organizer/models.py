@@ -10,10 +10,21 @@ from django.db.models import signals
 from .managers import ProfileUserManager
 
 
+class Kurs(models.Model):
+    name = models.CharField(max_length=100)
+    beschreibung = models.CharField(max_length=200)
+    bild = models.ImageField(blank=True)
+
+    class Meta:
+        verbose_name = _('Kurs')
+        verbose_name_plural = _('Kurse')
+
+    def __str__(self):
+        return self.name
 
 
 class Profile(AbstractBaseUser, PermissionsMixin):
-
+    Kurse = models.ManyToManyField(Kurs)
     #Username
     username = models.CharField(_('Username'), max_length=150, blank=True)
     #Vorname
@@ -108,6 +119,8 @@ class Eintrag(models.Model):
 
 class Kategorie(models.Model):
     name = models.CharField(max_length=100)
+    long = models.IntegerField(blank=True)
+    lat = models.IntegerField(blank=True)
 
     class Meta:
         verbose_name =_('Kategorie')
@@ -118,6 +131,8 @@ class Kategorie(models.Model):
 
 class Pferdegruppe(models.Model):
     name = models.CharField(max_length=100)
+    long = models.IntegerField(blank=True)
+    lat = models.IntegerField(blank=True)
 
     class Meta:
         verbose_name = _('Pferdegruppe')
@@ -140,18 +155,6 @@ class Pferd(models.Model):
 
     def __str__(self):
         return self.offizieller_name
-
-class Kurs(models.Model):
-    name = models.CharField(max_length=100)
-    beschreibung = models.CharField(max_length=200)
-    bild = models.ImageField(blank=True)
-
-    class Meta:
-        verbose_name = _('Kurs')
-        verbose_name_plural = _('Kurse')
-
-    def __str__(self):
-        return self.name
 
 
 
