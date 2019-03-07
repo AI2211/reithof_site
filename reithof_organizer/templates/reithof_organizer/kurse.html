@@ -29,9 +29,6 @@
                         <h2>Für diesen Kurs eingetragen</h2>
                         <script>document.getElementById("kurs_button{{ kurs.pk }}").href="{% url 'ausgetragen_kurs' kurs.pk %}";
                         document.getElementById("kurs_button{{ kurs.pk }}").innerHTML="Kurs verlassen";</script>
-            {% else %}
-
-
             {% endif %}
         {% endfor %}
     {% endif %}
