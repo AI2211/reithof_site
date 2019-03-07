@@ -13,10 +13,7 @@ from .managers import ProfileUserManager
 
 
 class Profile(AbstractBaseUser, PermissionsMixin):
-    #Pferd
-    #pferd = models.ForeignKey(Pferd, on_delete=models.CASCADE, blank=True, null=True)
-    #Einträge
-    #eintrag = models.ForeignKey(Eintrag, on_delete=models.CASCADE, blank=True, null=True)
+
     #Username
     username = models.CharField(_('Username'), max_length=150, blank=True)
     #Vorname
@@ -109,12 +106,33 @@ class Eintrag(models.Model):
     def __str__(self):
         return self.titel
 
+class Kategorie(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name =_('Kategorie')
+        verbose_name_plural = _('Kategorien')
+
+    def __str__(self):
+        return self.name
+
+class Pferdegruppe(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = _('Pferdegruppe')
+        verbose_name_plural = _('Pferdegruppen')
+
+    def __str__(self):
+        return self.name
+
 class Pferd(models.Model):
     besitzer = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    pferdgruppe = models.ForeignKey(Pferdegruppe, on_delete=models.CASCADE)
     offizieller_name = models.CharField(max_length=100)
     rufname = models.CharField(max_length=100)
     geburtstag = models.DateTimeField(blank=True)
-    kategorie = models.CharField(max_length=100)
+    kategorie = models.ForeignKey(Kategorie, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = _('Pferd')
@@ -134,3 +152,7 @@ class Kurs(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+
