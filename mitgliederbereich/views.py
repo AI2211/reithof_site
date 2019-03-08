@@ -3,7 +3,7 @@ from django.contrib.auth.forms import get_user_model
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import EmailChangeForm
 
-from reithof_organizer.models import Profile
+from reithof_organizer.models import *
 
 def index(request):
     return render(request, 'mitgliederbereich/index.html')
@@ -59,3 +59,12 @@ def email_change(request):
 
 def email_change_done(request):
     return render(request, 'mitgliederbereich/email_change_done.html')
+
+def pferde_management(request):
+    all_user_pferde = Pferd.objects.all().filter(besitzer=request.user)
+    return render(request, 'mitgliederbereich/pferde_management.html', {'all_user_pferde': all_user_pferde})
+
+def pferd_standort(reqiest, pk):
+    pferd =get_object_or_404(Pferd, pk=pk)
+
+    return render(reqiest, 'mitgliederbereich/pferd_standort.html', {'pferd': pferd})

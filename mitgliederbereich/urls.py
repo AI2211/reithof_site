@@ -18,6 +18,9 @@ urlpatterns = [
     path(r'email-change/', views.email_change, name='email_change'),
     path(r'email-change-done/', views.email_change_done, name='email_change_done'),
 
+    path(r'management/', views.pferde_management, name='pferde_management'),
+    path(r'standort/<int:pk>/', views.pferd_standort, name='pferd_standort'),
+
 
     path(r'password-change/', auth_views.PasswordChangeView.as_view(template_name='mitgliederbereich/password_change.html'), name='password_change'),
 

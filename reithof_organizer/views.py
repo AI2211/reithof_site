@@ -130,7 +130,6 @@ def delete_kurs(request, pk):
 
 def eintragen_kurs(request, pk):
     kurs = get_object_or_404(Kurs, pk=pk)
-    kurs_bool = "true"
     request.user.Kurse.add(kurs)
     request.user.save()
 
@@ -138,7 +137,6 @@ def eintragen_kurs(request, pk):
 
 def austragen_kurs(request, pk):
     kurs = get_object_or_404(Kurs, pk=pk)
-    kurs_bool = "false"
     request.user.Kurse.remove(kurs)
     request.user.save()
 

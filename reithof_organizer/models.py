@@ -143,7 +143,7 @@ class Pferdegruppe(models.Model):
 
 class Pferd(models.Model):
     besitzer = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    pferdgruppe = models.ForeignKey(Pferdegruppe, on_delete=models.CASCADE)
+    pferdgruppe = models.ForeignKey(Pferdegruppe, on_delete=models.CASCADE, blank=True)
     offizieller_name = models.CharField(max_length=100)
     rufname = models.CharField(max_length=100)
     geburtstag = models.DateTimeField(blank=True)

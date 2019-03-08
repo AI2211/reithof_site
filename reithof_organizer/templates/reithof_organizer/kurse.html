@@ -12,7 +12,7 @@
             <h2>KEIN BILD</h2>
         {% endif %}
     {% if user.is_staff %}
-       <h2>Mitgliederliste: </h2>
+       <h2>Teilnehmerliste: </h2>
         {% if kurs.profile_set.all %}
             {% for profile in kurs.profile_set.all %}
                 <h2>{{ profile.email }}</h2>
