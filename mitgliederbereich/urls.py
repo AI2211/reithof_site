@@ -25,4 +25,9 @@ urlpatterns = [
     path(r'password-change/', auth_views.PasswordChangeView.as_view(template_name='mitgliederbereich/password_change.html'), name='password_change'),
 
     path(r'password-change-done/', auth_views.PasswordChangeDoneView.as_view(template_name='mitgliederbereich/password_change_done.html'), name='password_change_done'),
+
+    path(r'calendar', views.CalendarView.as_view(), name='calendar'),   # Calendar
+    path(r'mistplan', views.MistplanView.as_view(), name='mistplan'),    # Calendat
+    path(r'event/new', views.event, name='event_new'),
+	path(r'event/edit/(?P<event_id>\d+)/', views.event, name='event_edit'),
 ]

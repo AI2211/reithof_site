@@ -1,9 +1,10 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from django.forms import ModelForm, DateInput
+from mitgliederbereich.models import Event
 
 
 class EmailChangeForm(forms.Form):
-
     error_messages = {
         'password_incorrect': _("Das Passwort ist nicht korrekt!"),
         'email_mismatch': _("Die E-Mail-Adresse stimmen nicht überein!"),
@@ -29,8 +30,8 @@ class EmailChangeForm(forms.Form):
     field_order = ['password', 'new_email1', 'new_email2']
 
     def __init__(self, user, *args, **kwargs):
-         self.user = user
-         super(EmailChangeForm, self).__init__(*args, **kwargs)
+        self.user = user
+        super(EmailChangeForm, self).__init__(*args, **kwargs)
 
     def clean_new_email1(self):
         old_email = self.user.email
@@ -70,7 +71,25 @@ class EmailChangeForm(forms.Form):
         email = self.cleaned_data["new_email1"]
         self.user.email = email
 
-
         if commit:
             self.user.save()
         return self.user
+
+
+class EventForm(ModelForm):
+    class Meta:
+        model = Event
+        # datetime-local is a HTML5 input type, format to make date time show on fields
+        widgets = {
+            'start_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
+            'end_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
+        }
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(EventForm, self).__init__(*args, **kwargs)
+        # input_formats parses HTML5 datetime-local input to datetime field
+        self.fields['start_time'].input_formats = ('%Y-%m-%dT%H:%M',)
+        self.fields['end_time'].input_formats = ('%Y-%m-%dT%H:%M',)
+
+
