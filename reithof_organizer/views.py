@@ -105,6 +105,9 @@ def kontakt(request):
 def impressum(request):
     return render(request, 'reithof_organizer/impressum.html')
 
+def datenschutz(request):
+    return render(request, 'reithof_organizer/datenschutz.html')
+
 
 def register(request):
     if request.method == "POST":

@@ -18,6 +18,8 @@ urlpatterns = [
     url(r'^kontakt/$', views.kontakt, name='kontakt'),
     #Impressum
     url(r'^impressum/$', views.impressum, name='impressum'),
+    #Impressum
+    url(r'^datenschutz/$', views.datenschutz, name='datenschutz'),
     # Registrierung
     url(r'^register/$', views.register, name='register'),
     # Login
