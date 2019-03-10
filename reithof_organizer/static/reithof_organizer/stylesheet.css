@@ -5,6 +5,7 @@ body {
     font-size: 100%;
     margin: 0;
     padding: 0;
+    overflow: auto;
 }
 
 body, html {
@@ -139,7 +140,12 @@ form {
 }
 
 @media (max-width: 768px) {
-
+.carousel-caption h1 {
+    font-size: 3rem;
+}
+    .welcome h1{
+        font-size: 2rem;
+    }
 }
 
 @media (max-width: 576px) {
