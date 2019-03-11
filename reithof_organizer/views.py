@@ -1,17 +1,10 @@
 import os
-import sys
 
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
-from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.db.models import Q
 from django.core.mail import send_mail
-from django.core.mail import BadHeaderError, EmailMessage
+from django.core.mail import BadHeaderError
 from django.http import HttpResponse
 
-from reithof_site import settings
 from .forms import ProfileForm, CreateEintrag, CreateKurs
 from .models import Profile, Eintrag, Kurs
 
@@ -35,7 +28,7 @@ def ueber_uns(request):
 
 def kurse(request):
     all_kurs = Kurs.objects.all()
-
+    kurs_bool = "false"
     if request.method == "POST":
         form = CreateKurs(request.POST, request.FILES)
         if form.is_valid():
@@ -53,7 +46,7 @@ def galerie(request):
     for file in dirs:
         print(file)
     images_dict = {key: i for i, key in enumerate(dirs)}
-    #files = os.listdir(os.path.join(settings.STATIC_ROOT, "reithof_organizer/images"))
+    # files = os.listdir(os.path.join(settings.STATIC_ROOT, "reithof_organizer/images"))
     return render(request, 'reithof_organizer/galerie.html', {'images_dict': images_dict})
 
 
@@ -131,9 +124,32 @@ def delete_kurs(request, pk):
 
     return render(request, 'reithof_organizer/deleted_kurs.html', {'kurs': kurs})
 
+
+def eintragen_kurs(request, pk):
+    kurs = get_object_or_404(Kurs, pk=pk)
+    request.user.Kurse.add(kurs)
+    request.user.save()
+
+    return render(request, 'reithof_organizer/added_user_kurs.html', {'kurs': kurs})
+
+
+def austragen_kurs(request, pk):
+    kurs = get_object_or_404(Kurs, pk=pk)
+    request.user.Kurse.remove(kurs)
+    request.user.save()
+
+    return render(request, 'reithof_organizer/removed_user_kurs.html', {'kurs': kurs})
+
+
 def delete_news(request, pk):
     eintrag = get_object_or_404(Eintrag, pk=pk)
     eintrag.delete()
 
     return render(request, 'reithof_organizer/deleted_news.html', {'eintrag': eintrag})
+
+
+def leaflet_test(request):
+    return render(request, 'reithof_organizer/leaflet_test.html')
+
+
 

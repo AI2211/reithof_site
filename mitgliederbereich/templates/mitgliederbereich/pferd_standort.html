@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Standort</title>
+</head>
+<body>
+{% load leaflet_tags %}
+    <head>    {% leaflet_js %}
+    {% leaflet_css %}</head>
+{% leaflet_map "pferd_map" %}
+
+    <script>$(window).on('map:init', function (e) {
+    var detail = e.originalEvent ?
+                 e.originalEvent.detail : e.detail;
+    map.setView(new L.LatLng({{ pferd.kategorie.lat }},{{ pferd.kategorie.long }}));
+    map.setZoom(3);
+    L.marker([{{ pferd.kategorie.lat }},{{ pferd.kategorie.long }}]).addTo(detail.map).bindPopup("<b>Hallo!</b><br>Mein Rufname ist {{ pferd.rufname }} und ich bin hier!").openPopup();
+
+
+});</script>
+</body>
+</html>

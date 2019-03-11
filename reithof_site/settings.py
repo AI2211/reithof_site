@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'reithof_organizer.apps.ReithofOrganizerConfig',
     'mitgliederbereich.apps.MitgliederbereichConfig',
+    'leaflet'
 ]
 
 MIDDLEWARE = [
@@ -148,3 +149,12 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 AUTH_USER_MODEL = 'reithof_organizer.Profile'
 
 LOGIN_REDIRECT_URL = 'ritterstall'
+
+#NOMINATIM
+LEAFLET_CONFIG = {
+#'SPATIAL_EXTENT': (5.0, 44.0, 7.5, 46),
+#'DEFAULT_CENTER': (50.6576643,8.2979608),
+#'DEFAULT_ZOOM': 16,
+'MIN_ZOOM': 3,
+'MAX_ZOOM': 18,
+}
