@@ -49,5 +49,7 @@ urlpatterns = [
 
     path(r'leaflet', views.leaflet_test, name='leaflet'),
 
+    path(r'datenschutz/', views.datenschutz, name='datenschutz')
+
 
 ]
