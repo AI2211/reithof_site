@@ -59,8 +59,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'reithof_organizer.apps.ReithofOrganizerConfig',
     'mitgliederbereich.apps.MitgliederbereichConfig',
-    'leaflet'
+    'leaflet',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

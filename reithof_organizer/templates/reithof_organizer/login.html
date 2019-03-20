@@ -1,41 +1,23 @@
 {% extends 'reithof_organizer/base.html' %}
+
+{% load crispy_forms_tags %}
+
 {% block title %}Login{% endblock %}
 {% block body %}
-<div class="container-fluid">
-
-    <div class="row">
-        <div class="col-sm-12 col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h3>Einloggen</h3>
-                    {% if error_message %}
-                        <p><strong>{{ error_message }}</strong></p>
-                    {% endif %}
-                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% for field in form %}
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <span class="text-danger small">{{ field.errors }}</span>
-                                </div>
-                                <label class="control-label col-sm-2">{{ field.label_tag }}</label>
-                                <div class="col-sm-10">{{ field }}</div>
-                            </div>
-                        {% endfor %}
-                    <a href={% url 'password_reset' %}>Password vergessen?</a>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="panel-footer">
-                    Du hast noch keinen Account <a href="#">Klicke hier</a> um dich zu registrieren.
-                </div>
+<div class="row justify-content-center">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h2>Einloggen</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy}}
+                    <button class="btn" type="submit">Einloggen</button>
+                    <a href="{% url 'password_reset' %}" class="btn btn-outline-warning float-right">Password vergessen?</a>
+                    <a href="{% url 'register' %}" class="btn btn-outline-warning float-right">Zur Registrierung</a>
+                </form>
             </div>
         </div>
     </div>
-
 </div>
 {% endblock %}

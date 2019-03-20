@@ -21,6 +21,7 @@
             <h3>-->Keine Anmeldungen<--</h3>
             {% endif %}
     {% endif %}
+    {% if user.is_authenticated %}
     <a class="btn btn-primary" href="{% url 'eintragen_kurs' kurs.pk %}" id="kurs_button{{ kurs.pk }}">Kurs beitreten</a>
     <a class="btn btn-primary" href="{% url 'delete_kurs' kurs.pk %}">Löschen</a>
     {% if user.Kurse.all %}
@@ -31,6 +32,7 @@
                         document.getElementById("kurs_button{{ kurs.pk }}").innerHTML="Kurs verlassen";</script>
             {% endif %}
         {% endfor %}
+    {% endif %}
     {% endif %}
 
     </legend>
