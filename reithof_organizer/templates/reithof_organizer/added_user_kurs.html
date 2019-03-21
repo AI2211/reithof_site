@@ -1,0 +1,8 @@
+{% extends 'reithof_organizer/base.html' %}
+{% block title %}Eingetragen{% endblock %}
+{% block body %}
+<h1>{{ request.user.email }} in {{ kurs.name }} eingetragen!</h1>
+    <script> window.setTimeout(function(){
+    window.location.href = "{% url 'kurse' %}";
+  }, 2000);;</script>
+{% endblock %}

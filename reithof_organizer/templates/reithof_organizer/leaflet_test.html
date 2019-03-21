@@ -1,0 +1,17 @@
+{% extends 'reithof_organizer/base.html' %}
+{% block title %}Leaflet Test{% endblock %}
+{% block body %}
+    {% load leaflet_tags %}
+    <head>    {% leaflet_js %}
+    {% leaflet_css %}</head>
+{% leaflet_map "yourmap" %}
+
+    <script>$(window).on('map:init', function (e) {
+    var detail = e.originalEvent ?
+                 e.originalEvent.detail : e.detail;
+
+    L.marker([50.6576643,8.2979608]).addTo(detail.map).bindPopup("<b>Hallo!</b><br>Ich bin hier!").openPopup();
+
+
+});</script>
+{% endblock %}

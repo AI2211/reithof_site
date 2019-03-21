@@ -85,7 +85,7 @@ a {
 button {
     color: white;
     background-color: #ff8300;
-    margin-top: 1rem;
+    /*margin-top: 1rem;*/
 }
 
 button:hover {

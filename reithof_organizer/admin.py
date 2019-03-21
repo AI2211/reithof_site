@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Pferd, Eintrag, Kurs
+from .models import *
 from django import forms
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -14,7 +14,7 @@ class ProfileAdmin(UserAdmin):
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        (_('Persönliche Daten'), {'fields': ('vorname', 'nachname', 'email', 'geburtsdatum', 'mistpunkte')}),
+        (_('Persönliche Daten'), {'fields': ('vorname', 'nachname', 'email', 'geburtsdatum', 'mistpunkte', 'Kurse')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
@@ -36,4 +36,6 @@ admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Pferd)
 admin.site.register(Eintrag)
 admin.site.register(Kurs)
+admin.site.register(Pferdegruppe)
+admin.site.register(Kategorie)
 admin.site.unregister(Group)
