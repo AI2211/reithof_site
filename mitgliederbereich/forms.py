@@ -1,5 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import get_user_model, authenticate, password_validation
 
 
 class EmailChangeForm(forms.Form):
@@ -74,3 +76,9 @@ class EmailChangeForm(forms.Form):
         if commit:
             self.user.save()
         return self.user
+
+
+class ProfileChangeForm(UserChangeForm):
+    class Meta:
+        model = get_user_model()
+        fields = '__all__'

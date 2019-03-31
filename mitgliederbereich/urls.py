@@ -25,4 +25,8 @@ urlpatterns = [
     path(r'password-change/', auth_views.PasswordChangeView.as_view(template_name='mitgliederbereich/password_change.html'), name='password_change'),
 
     path(r'password-change-done/', auth_views.PasswordChangeDoneView.as_view(template_name='mitgliederbereich/password_change_done.html'), name='password_change_done'),
+
+    path(r'edit-profil/', views.edit_profil, name='edit_profil'),
+
+    path(r'edit-profil-success/', views.edit_profil, name='edit_profil_success'),
 ]

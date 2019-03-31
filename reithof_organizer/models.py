@@ -102,6 +102,9 @@ class Profile(AbstractBaseUser, PermissionsMixin):
         '''
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+    def set_mistpunkte(self, points):
+        self.mistpunkte=points
+
 class Eintrag(models.Model):
     autor = models.ForeignKey(Profile, on_delete=models.CASCADE)
     titel = models.CharField(max_length=250)

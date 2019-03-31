@@ -1,16 +1,26 @@
 from django.http import HttpResponse
 from django.contrib.auth.forms import get_user_model
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import EmailChangeForm
+from .forms import EmailChangeForm, ProfileChangeForm
 
 from reithof_organizer.models import *
 
 def index(request):
-    return render(request, 'mitgliederbereich/index.html')
+    return render(request, 'mitgliederbereich/base.html')
 
 def profil(request):
     all_profiles = Profile.objects.all()
     return render(request, 'mitgliederbereich/profil.html', {'all_profiles': all_profiles})
+
+def edit_profil(request):
+    if request.method == 'POST':
+        form = ProfileChangeForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            return redirect('edit_profil_success')
+    else:
+        form = ProfileChangeForm()
+    return render(request, 'mitgliederbereich/edit_profil.html', {'form': form})
 
 def profile_set_active(request, pk):
     profile = get_object_or_404(Profile, pk=pk)
@@ -68,3 +78,9 @@ def pferd_standort(reqiest, pk):
     pferd =get_object_or_404(Pferd, pk=pk)
 
     return render(reqiest, 'mitgliederbereich/pferd_standort.html', {'pferd': pferd})
+
+def set_mistpunkte_to_user(request, points):
+    profile = get_object_or_404(Profile, pk=request.user.pk)
+    profile.set_mistpunkte(points)
+
+    return render(request, 'mitgliederbereich/profil.html')

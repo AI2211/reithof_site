@@ -28,11 +28,6 @@ class ProfileForm(UserCreationForm):
         model = get_user_model()
         fields = ['email', 'vorname', 'nachname', 'password1', 'password2']
 
-class ProfileChangeForm(UserChangeForm):
-    class Meta:
-        model = get_user_model()
-        fields = '__all__'
-
 class CreateEintrag(forms.ModelForm):
     class Meta:
         model = Eintrag
@@ -41,4 +36,9 @@ class CreateEintrag(forms.ModelForm):
 class CreateKurs(forms.ModelForm):
     class Meta:
         model = Kurs
+        fields = '__all__'
+
+class ProfileChangeForm(UserChangeForm):
+    class Meta:
+        model = get_user_model()
         fields = '__all__'
