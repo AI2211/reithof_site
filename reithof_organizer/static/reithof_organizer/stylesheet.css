@@ -36,6 +36,11 @@ a {
     color: white;
     text-decoration: underline;
 }
+footer a:hover {
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
 
 .navbar-light .navbar-nav .nav-link {
     text-decoration: none;
