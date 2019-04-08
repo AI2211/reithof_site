@@ -19,6 +19,15 @@ hr {
     margin-bottom: 1rem;
 }
 
+a{
+    color: black;
+    font-style: italic;
+    text-decoration: underline;
+}
+a:hover{
+    color: #ff8300;
+}
+
 
 /*--- Bootstrap Padding Fix --*/
 [class*="col-"] {
@@ -32,7 +41,7 @@ hr {
     color: white;
 }
 
-a {
+footer a {
     color: white;
     text-decoration: underline;
 }
@@ -40,6 +49,10 @@ footer a:hover {
     font-weight: bold;
     text-decoration: none;
     color: white;
+}
+nav a{
+    text-decoration: none;
+    font-style: normal;
 }
 
 .navbar-light .navbar-nav .nav-link {
