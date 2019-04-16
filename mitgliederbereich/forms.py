@@ -79,6 +79,9 @@ class EmailChangeForm(forms.Form):
 
 
 class ProfileChangeForm(UserChangeForm):
+    password = None
+    geburtsdatum = forms.DateField(widget=forms.SelectDateWidget)
+
     class Meta:
         model = get_user_model()
-        fields = '__all__'
+        fields = ['vorname', 'nachname', 'geburtsdatum']
