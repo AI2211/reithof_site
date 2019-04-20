@@ -4,14 +4,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'calendar/stylesheet.css' %}">
     <title>Mistplan</title>
 </head>
 <body>
 
 <div class="clearfix">
-    <a class="btn btn-info left" href="{% url 'mistplan' %}?{{ prev_month }}"> Previous Month </a>
-    <a class="btn btn-info right" href="{% url 'mistplan' %}?{{ next_month }}"> Next Month </a>
+    <a class="btn btn-info left" href="{% url 'mistplan' %}?{{ prev_month }}"> << </a>
+    <a class="btn btn-info right" href="{% url 'mistplan' %}?{{ next_month }}"> >> </a>
+    <a href="{% url 'profil' %}">Profil</a>
 </div>
 
 {{ calendar }}

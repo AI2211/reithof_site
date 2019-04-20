@@ -4,15 +4,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'calendar/stylesheet.css' %}">
     <title>Kalender</title>
 </head>
 
 <body>
 
     <div class="clearfix">
-        <a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Previous Month </a>
-        <a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }}"> Next Month </a>
+        <a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> << </a>
+        <a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }}"> >> </a>
+        <a href="{% url 'event_new' %}">Neuer Termin</a>
+        <a href="{% url 'profil' %}">Profil</a>
     </div>
 
     {{calendar}} <!-- variable get Calendar-items from view.py -->

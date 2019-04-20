@@ -46,19 +46,6 @@ class Calendar(HTMLCalendar):
 
     #********************************************* Mistplan *************************************************************
 
-    def formatdayMistplan(self, day):
-        if day != 0:
-            return f"<td><span class='date'>{day}</span></td>"
-        return '<td></td>'
-
-        # formats a week as a tr
-
-    def formatweekMistplan(self, theweek):
-        week = ''
-        for d, weekday in theweek:
-            week += self.formatdayMistplan(d)
-        return f'<tr> {week} </tr>'
-
     def formatmonthMistplan(self, withyear=True):
         cal = f'<table class="calendar">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
@@ -67,18 +54,18 @@ class Calendar(HTMLCalendar):
             for day, weekday in week:
                 if (day != 0):
                     cal += f'<tr>'
-                    cal += f'<td>{day}</td>'
-                    cal += f'<td>{self._weekdays[weekday]}</td>'
-                    cal += f'<td>{"name"}</td>'
-                    cal += f'<td>{"name"}</td>'
-                    cal += f'<td>{"name"}</td>'
-                    cal += f'<td>{"name"}</td>'
+                    cal += f'<td>{day} {self._weekdays[weekday]}</td>'
+                    #cal += f'<td>{self._weekdays[weekday]}</td>'
+                    cal += f'<td class="setName">{"name"}</td>'
+                    cal += f'<td class="setName">{"name"}</td>'
+                    cal += f'<td class="setName">{"name"}</td>'
+                    cal += f'<td class="setName">{"name"}</td>'
                     cal += f'</tr>'
         return cal
 
     def createMistplanHeader(self):
         header = f'<tr>'
-        header += f'<th colspan="2">Name: </th>'
+        header += f'<th></th>'
         header += f'<th>Stuten</th>'
         header += f'<th>Wallache</th>'
         header += f'<th>Ritter</th>'
