@@ -55,11 +55,10 @@ class Calendar(HTMLCalendar):
                 if (day != 0):
                     cal += f'<tr>'
                     cal += f'<td>{day} {self._weekdays[weekday]}</td>'
-                    #cal += f'<td>{self._weekdays[weekday]}</td>'
-                    cal += f'<td class="setName">{"name"}</td>'
-                    cal += f'<td class="setName">{"name"}</td>'
-                    cal += f'<td class="setName">{"name"}</td>'
-                    cal += f'<td class="setName">{"name"}</td>'
+                    count = 0;
+                    while count < 4:
+                        cal += f'<td class="setName">{"name"}</td>'
+                        count += 1
                     cal += f'</tr>'
         return cal
 
