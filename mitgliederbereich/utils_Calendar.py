@@ -5,7 +5,7 @@ from mitgliederbereich.models import Event
 # *************************************** Calendar ***************************************************************
 
 class Calendar(HTMLCalendar):
-    _weekdays = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
+    _weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 
     def __init__(self, year=None, month=None):
         self.year = year
@@ -53,21 +53,21 @@ class Calendar(HTMLCalendar):
         for week in self.monthdays2calendar(self.year, self.month):
             for day, weekday in week:
                 if (day != 0):
-                    cal += f'<tr>'
+                    cal += '<tr>'
                     cal += f'<td>{day} {self._weekdays[weekday]}</td>'
                     count = 0;
                     while count < 4:
-                        cal += f'<td class="setName">{"name"}</td>'
+                        cal += f'<td class="setName"><button type="button" onClick="nameMistplan(this)" value= >{"name"}</button></td>'
                         count += 1
-                    cal += f'</tr>'
+                    cal += '</tr>'
         return cal
 
     def createMistplanHeader(self):
-        header = f'<tr>'
-        header += f'<th></th>'
-        header += f'<th>Stuten</th>'
-        header += f'<th>Wallache</th>'
-        header += f'<th>Ritter</th>'
-        header += f'<th>Senioren</th>'
-        header += f'</tr>'
+        header = '<tr>'
+        header += '<th></th>'
+        header += '<th>Stuten</th>'
+        header += '<th>Wallache</th>'
+        header += '<th>Ritter</th>'
+        header += '<th>Senioren</th>'
+        header += '</tr>'
         return header

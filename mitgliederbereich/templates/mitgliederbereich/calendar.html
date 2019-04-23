@@ -1,7 +1,7 @@
 {% load staticfiles %}
 
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>Kalender</title>
@@ -17,8 +17,9 @@
             <li><a href="{% url 'profil' %}">Profil</a></li>
         </ul>
     </div>
-
-    {{calendar}} <!-- variable get Calendar-items from view.py -->
+    <div>
+        {{calendar}} <!-- variable get Calendar-items from view.py -->
+    </div>
 
 </body>
 </html>

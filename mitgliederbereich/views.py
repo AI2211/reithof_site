@@ -115,7 +115,7 @@ class MistplanView(generic.ListView):
         d = get_date(self.request.GET.get('month', None))
         cal = Calendar(d.year, d.month)
         html_cal = cal.formatmonthMistplan()
-        context['calendar'] = mark_safe(html_cal)
+        context['mistplan'] = mark_safe(html_cal)
         context['prev_month'] = prev_month(d)
         context['next_month'] = next_month(d)
         return context

@@ -1,21 +1,27 @@
 {% load staticfiles %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>Mistplan</title>
 </head>
 <body>
 
-<div>
-    <ul>
-        <li><a href="{% url 'mistplan' %}?{{ prev_month }}"> << </a></li>
-        <li><a href="{% url 'mistplan' %}?{{ next_month }}"> >> </a></li>
-        <li><a href="{% url 'profil' %}">Profil</a></li>
-    </ul>
-</div>
-
-{{ calendar }}
+    <div>
+        <ul>
+            <li><a href="{% url 'mistplan' %}?{{ prev_month }}"> << </a></li>
+            <li><a href="{% url 'mistplan' %}?{{ next_month }}"> >> </a></li>
+            <li><a href="{% url 'profil' %}">Zum Profil</a></li>
+        </ul>
+    </div>
+    <div>
+        {{mistplan}}
+    </div>
+<script>
+    function nameMistplan(button){
+        console.log(button.parentElement);
+    }
+</script>
 </body>
 </html>
