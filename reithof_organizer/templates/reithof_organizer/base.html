@@ -27,7 +27,11 @@
 </head>
 <body>
 {% cookielaw_banner %}
-<nav class="navbar navbar-expand-md navbar-light ">
+<!--
+<header>
+    <img src="{% static 'reithof_organizer/images/header.jpg' %}" alt="Header">
+  </header>-->
+<nav class="navbar navbar-expand-md navbar-light">
     <a class="navbar-brand active" href="{% url 'ritterstall' %}">Ritterstall</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,14 +63,11 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <p>Willkommen {{ user.vorname }}!</p>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'profil' %}">Mitgliederbereich</a>
+                <li class="">
+                    <a class="nav-link" href="{% url 'profil' %}">Mitgliederbereich</a>
                 </li>
                 <li class="">
-                    <a href="{% url 'logout' %}">Ausloggen</a>
+                    <a class="nav-link" href="{% url 'logout' %}">Ausloggen</a>
                 </li>
             {% else %}
                 <li class="">

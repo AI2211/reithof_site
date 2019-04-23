@@ -125,7 +125,7 @@ class Pferd(models.Model):
 
 class Kurs(models.Model):
     name = models.CharField(max_length=100)
-    beschreibung = models.CharField(max_length=200)
+    beschreibung = models.TextField()
     bild = models.ImageField(blank=True)
 
     class Meta:

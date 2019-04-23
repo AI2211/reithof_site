@@ -1,7 +1,76 @@
 {% extends 'reithof_organizer/base.html' %}
+{% load static %}
 {% block title %}Über Uns{% endblock %}
 {% block body %}
-    {% for profile in all_profiles %}
-        <h1>email: {{ profile.email }} - username: {{ profile.username }} - superuser: {{ profile.is_superuser }} - staff: {{ profile.is_staff }} active: {{ profile.is_active }}</h1>
-    {% endfor %}
+
+    <div class="container-fluid padding">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Über Uns</h1>
+            </div>
+            <hr>
+
+        </div>
+    </div>
+
+    <!--Carsten Ritter-->
+    <div class="container-fluid padding" style="color: white; background-color:#ff8300">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Carsten Ritter</h1>
+                <hr style="border-top: 2px solid white;">
+            </div>
+        </div>
+        <div class="row padding">
+            <div class="col-lg-6">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum.</p>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'reithof_organizer/images/beispielbild.jpg' %}" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <!--Carina Himmelreich-->
+    <div class="container-fluid padding" style="color: black; background-color:white">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Carina Himmelreich</h1>
+                <hr style="border-top: 2px solid #ff8300;">
+            </div>
+        </div>
+        <div class="row padding">
+            <div class="col-lg-6">
+                <img src="{% static 'reithof_organizer/images/beispielbild.jpg' %}" class="img-fluid">
+            </div>
+            <div class="col-lg-6">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum.</p>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum.</p>
+            </div>
+
+        </div>
+    </div>
+
+
 {% endblock %}

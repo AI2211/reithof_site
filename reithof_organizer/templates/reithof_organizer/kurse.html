@@ -1,39 +1,61 @@
 {% extends 'reithof_organizer/base.html' %}
 {% block title %}Aktuell{% endblock %}
 {% block body %}
-<h1>Aktuell</h1>
-    {% for kurs in all_kurs %}
-    <legend>
-    <h1>{{ kurs.name }}</h1>
-    <h2>{{ kurs.beschreibung }}</h2>
-        {% if kurs.bild %}
-    <img src="{{ kurs.bild.url }}">
-            {% else %}
-            <h2>KEIN BILD</h2>
-        {% endif %}
-    <a class="btn btn-primary" href="{% url 'delete_kurs' kurs.pk %}">Löschen</a>
-    </legend>
-{% endfor %}
-    {% if user.is_superuser %}
-    {% if error_message %}
-                        <p><strong>{{ error_message }}</strong></p>
+    <div class="container-fluid padding">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Kurse</h1>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card-deck mb-3 text-center">
+            {% for kurs in all_kurs %}
+                <div class="card mb-4 box-shadow">
+                    {% if kurs.bild %}
+                        <img src="{{ kurs.bild.url }}" class="card-img-top">
+                    {% else %}
+                        <h3>KEIN BILD</h3>
                     {% endif %}
-                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% for field in form %}
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <span class="text-danger small">{{ field.errors }}</span>
-                                </div>
-                                <label class="control-label col-sm-2">{{ field.label_tag }}</label>
-                                <div class="col-sm-10">{{ field }}</div>
-                            </div>
-                        {% endfor %}
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ kurs.name }}</h5>
+                        <p class="card-text">{{ kurs.beschreibung }}</p>
+                        {% if user.is_superuser %}
+                            <a href="{% url 'delete_kurs' kurs.pk %}">
+                                <button class="btn float-right">Löschen</button>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+    {% if user.is_superuser %}
+        <div class="container">
+            {% if error_message %}
+                <p><strong>{{ error_message }}</strong></p>
+            {% endif %}
+            <h2 class="display-4">Fügen Sie einen neuen Kurs hinzu</h2>
+            <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <span class="text-danger small">{{ field.errors }}</span>
+
+                        <label>{{ field.label_tag }}</label>
+                        <div class="row no-gutters">
+                            <div class="col-sm-10">{{ field }}</div>
                         </div>
-                    </form>
-{% endif %}
+                    </div>
+                {% endfor %}
+                <div class="form-group">
+                        <button type="submit" class="btn ">Submit</button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+
 {% endblock %}
