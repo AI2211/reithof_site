@@ -1,44 +1,45 @@
 {% extends 'reithof_organizer/base.html' %}
 {% block title %}Login{% endblock %}
 {% block body %}
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <div class="container">
-        <div class="role welcome text-center">
-            <div class="col-12">
+        <div class="container">
+            <div class="role welcome text-center">
+                <div class="col-12">
 
                     <h1 class="display-4">Einloggen</h1>
                     <hr>
-              </div>
+                </div>
             </div>
-                    {% if error_message %}
-                        <p><strong>{{ error_message }}</strong></p>
-                    {% endif %}
-                    <form role="form" action="" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% for field in form %}
-                            <div class="form-group">
+            {% if error_message %}
+                <p><strong>{{ error_message }}</strong></p>
+            {% endif %}
+            <form role="form" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
 
-                                <span class="text-danger small">{{ field.errors }}</span>
+                        <span class="text-danger small">{{ field.errors }}</span>
 
-                                <label>{{ field.label_tag }}</label>
-                                <div class="row no-gutters">
-                                <div class="col-12 no-gutters" >{{ field }}</div></div>
-                            </div>
-                        {% endfor %}
-                        <div class="form-group">
-
-                                <button type="submit" class="btn">Submit</button>
-
+                        <label>{{ field.label_tag }}</label>
+                        <div class="row no-gutters">
+                            <div class="col-12 no-gutters">{{ field }}</div>
                         </div>
-                    <div >
+                    </div>
+                {% endfor %}
+                <div class="form-group">
+
+                    <button type="submit" class="btn">Submit</button>
+
+                </div>
+                <div>
                     Du hast noch keinen Account <a href="#">Klicke hier</a> um dich zu registrieren.
 
+                </div>
+            </form>
+
+
         </div>
-                    </form>
-
-
     </div>
-</div>
 
 {% endblock %}
