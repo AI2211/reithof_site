@@ -1,10 +1,17 @@
-{% extends 'mitgliederbereich/base.html' %}
-{% block title %}Profil{% endblock %}
-{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil</title>
+</head>
+<body>
+<a href="{% url 'ritterstall' %}">Zurück zur Hauptseite</a>
 <h2>Vorname: {{ user.vorname }}</h2>
 <h2>Nachname: {{ user.nachname }}</h2>
 <h2>Letzte Anmeldung: {{ user.last_login }}</h2>
 <h2>E-Mail: {{ user.email }}</h2>
+<a href="{% url 'email_change' %}">E-Mail-Adresse ändern</a>
+<a href="{% url 'password_change' %}">Passwort ändern</a>
 <h2>Mistpunkte: {{ user.mistpunkte }}</h2>
 <h2>Erstellt am: {{ user.date_joined }}</h2>
 {% if user.is_active %}
@@ -36,9 +43,6 @@
     {% endfor %}
 {% endif %}
 
-<h2>Meine Kurse: </h2>
-    {% for kurs in user.Kurse.all %}
-        {{ kurs.name }}
-    {% endfor %}
 
-{% endblock %}
+</body>
+</html>

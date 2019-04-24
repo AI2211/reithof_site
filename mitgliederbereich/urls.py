@@ -18,20 +18,8 @@ urlpatterns = [
     path(r'email-change/', views.email_change, name='email_change'),
     path(r'email-change-done/', views.email_change_done, name='email_change_done'),
 
-    path(r'management/', views.pferde_management, name='pferde_management'),
-    path(r'standort/<int:pk>/', views.pferd_standort, name='pferd_standort'),
-
 
     path(r'password-change/', auth_views.PasswordChangeView.as_view(template_name='mitgliederbereich/password_change.html'), name='password_change'),
 
     path(r'password-change-done/', auth_views.PasswordChangeDoneView.as_view(template_name='mitgliederbereich/password_change_done.html'), name='password_change_done'),
-
-    path(r'edit-profil/', views.edit_profil, name='edit_profil'),
-
-    path(r'edit-profil-success/', views.edit_profil, name='edit_profil_success'),
-
-    path(r'calendar', views.CalendarView.as_view(), name='calendar'),
-    path(r'mistplan', views.MistplanView.as_view(), name='mistplan'),
-    path(r'event/new', views.event, name='event_new'),
-	path(r'event/edit/<event_id>/', views.event, name='event_edit'),
 ]

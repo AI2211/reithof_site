@@ -18,8 +18,6 @@ urlpatterns = [
     path(r'kontakt/', views.kontakt, name='kontakt'),
     #Impressum
     path(r'impressum/', views.impressum, name='impressum'),
-    #Datenschutz
-    path(r'datenschutz/', views.datenschutz, name='datenschutz'),
     # Registrierung
     path(r'register/', views.register, name='register'),
     # Login
@@ -38,6 +36,5 @@ urlpatterns = [
     path(r'delete_kurs/<int:pk>/', views.delete_kurs, name='delete_kurs'),
     path(r'delete_news/<int:pk>/', views.delete_news, name='delete_news'),
 
-    path(r'add-user-kurs/<int:pk>', views.eintragen_kurs, name='eintragen_kurs'),
-    path(r'remove-user-kurs/<int:pk>', views.austragen_kurs, name='ausgetragen_kurs'),
+    path(r'leaflet', views.leaflet_test, name='leaflet')
 ]
