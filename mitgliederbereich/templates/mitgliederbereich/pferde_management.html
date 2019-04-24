@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Meine Pferde: </h2>
+{% if not all_user_pferde %}
+    <h2>Keine Pferde vorhanden</h2>
+    {% else %}
+    {% for pferd in all_user_pferde %}
+        <a href="{% url 'pferd_standort' pferd.pk %}">{{ pferd.rufname }}</a>
+    {% endfor %}
+{% endif %}
+
+
+</body>
+</html>

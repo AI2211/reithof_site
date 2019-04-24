@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Profil</title>
-</head>
-<body>
-
+{% extends 'mitgliederbereich/base.html' %}
+{% block title %}Profil{% endblock %}
+{% block body %}
 <h2>Vorname: {{ user.vorname }}</h2>
 <h2>Nachname: {{ user.nachname }}</h2>
 <h2>Letzte Anmeldung: {{ user.last_login }}</h2>
@@ -41,6 +36,9 @@
     {% endfor %}
 {% endif %}
 
+<h2>Meine Kurse: </h2>
+    {% for kurs in user.Kurse.all %}
+        {{ kurs.name }}
+    {% endfor %}
 
-</body>
-</html>
+{% endblock %}
