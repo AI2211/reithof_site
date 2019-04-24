@@ -1,0 +1,25 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalender</title>
+</head>
+
+<body>
+
+    <div>
+        <ul>
+            <li><a href="{% url 'calendar' %}?{{ prev_month }}"> << </a></li>
+            <li><a href="{% url 'calendar' %}?{{ next_month }}"> >> </a></li>
+            <li><a href="{% url 'event_new' %}">Neuer Termin</a></li>
+            <li><a href="{% url 'profil' %}">Profil</a></li>
+        </ul>
+    </div>
+    <div>
+        {{calendar}} <!-- variable get Calendar-items from view.py -->
+    </div>
+
+</body>
+</html>

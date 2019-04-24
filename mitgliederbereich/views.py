@@ -5,6 +5,17 @@ from .forms import EmailChangeForm, ProfileChangeForm
 
 from reithof_organizer.models import *
 
+from django.views import generic  # Calendar
+from django.utils.safestring import mark_safe  # Calendar
+from datetime import datetime, timedelta, date  # Calendar
+from django.http import HttpResponse, HttpResponseRedirect # Calendar
+from django.urls import reverse  # Calendar
+
+from .models import Event  # Calendar
+from .utils_Calendar import Calendar  # Calendar
+from .forms import EventForm # Calendar
+import calendar  # Calendar
+
 def index(request):
     return render(request, 'mitgliederbereich/base.html')
 
@@ -85,3 +96,118 @@ def set_mistpunkte_to_user(request, points):
     profile.set_mistpunkte(points)
 
     return render(request, 'mitgliederbereich/profil.html')
+
+class CalendarView(generic.ListView):  # Calendar
+    model = Event
+    template_name = 'mitgliederbereich/calendar.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        d = get_date(self.request.GET.get('month', None))
+        cal = Calendar(d.year, d.month)
+        html_cal = cal.formatmonth(withyear=True)
+        context['calendar'] = mark_safe(html_cal)
+        context['prev_month'] = prev_month(d)
+        context['next_month'] = next_month(d)
+        return context
+
+
+class MistplanView(generic.ListView):
+    model = Event
+    template_name = 'mitgliederbereich/mistplan.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        d = get_date(self.request.GET.get('month', None))
+        cal = Calendar(d.year, d.month)
+        html_cal = cal.formatmonthMistplan()
+        context['mistplan'] = mark_safe(html_cal)
+        context['prev_month'] = prev_month(d)
+        context['next_month'] = next_month(d)
+        return context
+
+
+def prev_month(d):  # Calendar
+    first = d.replace(day=1)
+    prev_month = first - timedelta(days=1)
+    month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
+    return month
+
+
+def next_month(d):  # Calendar
+    days_in_month = calendar.monthrange(d.year, d.month)[1]
+    last = d.replace(day=days_in_month)
+    next_month = last + timedelta(days=1)
+    month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+    return month
+
+
+def get_date(req_day):  # Calendar
+    if req_day:
+        year, month = (int(x) for x in req_day.split('-'))
+        return date(year, month, day=1)
+    return datetime.today()
+
+
+def event(request, event_id=None):
+    instance = Event()
+    if event_id:
+        instance = get_object_or_404(Event, pk=event_id)
+    else:
+        instance = Event()
+
+    form = EventForm(request.POST or None, instance=instance)
+    if request.POST and form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('calendar'))
+    return render(request, 'mitgliederbereich/event.html', {'form': form})
+
+class EmailChangeForm(forms.Form):
+
+    error_messages = {
+        'email_mismatch': _("Die E-Mail-Adresse stimmen nicht überein!"),
+        'not_changed': _("Es wird die selbe E-Mail-Adresse genutzt!"),
+    }
+
+    new_email1 = forms.EmailField(
+        label=_("Neue E-Mail-Adresse"),
+        widget=forms.EmailInput,
+    )
+
+    new_email2 = forms.EmailField(
+        label=_("Neue E-Mail-Adresse bestätigen"),
+        widget=forms.EmailInput,
+    )
+
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(EmailChangeForm, self).__init__(*args, **kwargs)
+
+    def clean_new_email1(self):
+        old_email = self.user.email
+        new_email1 = self.cleaned_data.get('new_email1')
+        if new_email1 and old_email:
+            if new_email1 == old_email:
+                raise forms.ValidationError(
+                    self.error_messages['not_changed'],
+                    code='not_changed',
+                )
+        return new_email1
+
+    def clean_new_email2(self):
+        new_email1 = self.cleaned_data.get('new_email1')
+        new_email2 = self.cleaned_data.get('new_email2')
+        if new_email1 and new_email2:
+            if new_email1 != new_email2:
+                raise forms.ValidationError(
+                    self.error_messages['email_mismatch'],
+                    code='email_mismatch',
+                )
+        return new_email2
+
+    def save(self, commit=True):
+        email = self.cleaned_data["new_email1"]
+        self.user.email = email
+        if commit:
+            self.user.save()
+        return self.user

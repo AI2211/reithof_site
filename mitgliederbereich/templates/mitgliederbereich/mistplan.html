@@ -1,6 +1,35 @@
-{% extends 'mitgliederbereich/base.html' %}
+{% load staticfiles %}
 
-{% block title %}Mistplan{% endblock %}
-{% block body %}
-<h1>Mistplan</h1>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Mistplan</title>
+</head>
+<body>
+
+    <div>
+        <ul>
+            <li><a href="{% url 'mistplan' %}?{{ prev_month }}"> << </a></li>
+            <li><a href="{% url 'mistplan' %}?{{ next_month }}"> >> </a></li>
+            <li><a href="{% url 'profil' %}">Zum Profil</a></li>
+        </ul>
+    </div>
+    <div>
+        {{mistplan}}
+    </div>
+<script>
+    function nameMistplan(button, horsePower){
+            fetch(`/mitglieder/mistplan/insert/${button.value}/${horsePower}`)
+                .then(response=>{
+                    if (response.status === 200){
+                        button.innerHtml = response.userName;
+                    }
+                })
+                .catch(error => {
+                    console.log(`Fehler beim einfuegen: ${error}`);
+                });
+    }
+</script>
+</body>
+</html>

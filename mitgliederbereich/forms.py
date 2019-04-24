@@ -3,6 +3,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.forms import get_user_model, authenticate, password_validation
 
+from django import forms
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.forms import get_user_model
+
 
 class EmailChangeForm(forms.Form):
 
