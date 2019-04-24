@@ -10,15 +10,23 @@ from django.db.models import signals
 from .managers import ProfileUserManager
 
 
+class Kurs(models.Model):
+    name = models.CharField(max_length=100)
+    beschreibung = models.CharField(max_length=200)
+    bild = models.ImageField(blank=True)
+
+    class Meta:
+        verbose_name = _('Kurs')
+        verbose_name_plural = _('Kurse')
+
+    def __str__(self):
+        return self.name
 
 
 class Profile(AbstractBaseUser, PermissionsMixin):
-    #Pferd
-    #pferd = models.ForeignKey(Pferd, on_delete=models.CASCADE, blank=True, null=True)
-    #Einträge
-    #eintrag = models.ForeignKey(Eintrag, on_delete=models.CASCADE, blank=True, null=True)
+    Kurse = models.ManyToManyField(Kurs)
     #Username
-    username = models.CharField(_('Username'), max_length=150)
+    username = models.CharField(_('Username'), max_length=150, blank=True)
     #Vorname
     vorname = models.CharField(_('Vorname'), max_length=50, blank=True)
     #Nachname
@@ -36,9 +44,9 @@ class Profile(AbstractBaseUser, PermissionsMixin):
         },
     )
     #Geburtsdatum
-    geburtsdatum = models.DateField(_('Geburtsdatum'), auto_now_add=False, auto_now=False, null=True)
+    geburtsdatum = models.DateField(_('Geburtsdatum'), auto_now_add=False, auto_now=False, null=True, blank=True)
     #Mistpunkte
-    mistpunkte = models.IntegerField(null=True)
+    mistpunkte = models.IntegerField(null=True, blank=True)
     #Erstellt am
     date_joined = models.DateTimeField(_('Erstellt am'), default=timezone.now)
     #Ist Superuser
@@ -94,6 +102,9 @@ class Profile(AbstractBaseUser, PermissionsMixin):
         '''
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+    def set_mistpunkte(self, points):
+        self.mistpunkte=points
+
 class Eintrag(models.Model):
     autor = models.ForeignKey(Profile, on_delete=models.CASCADE)
     titel = models.CharField(max_length=250)
@@ -109,12 +120,25 @@ class Eintrag(models.Model):
     def __str__(self):
         return self.titel
 
+class Kategorie(models.Model):
+    name = models.CharField(max_length=100)
+    long = models.IntegerField(blank=True)
+    lat = models.IntegerField(blank=True)
+
+    class Meta:
+        verbose_name =_('Kategorie')
+        verbose_name_plural = _('Kategorien')
+
+    def __str__(self):
+        return self.name
+
+
 class Pferd(models.Model):
     besitzer = models.ForeignKey(Profile, on_delete=models.CASCADE)
     offizieller_name = models.CharField(max_length=100)
     rufname = models.CharField(max_length=100)
     geburtstag = models.DateTimeField(blank=True)
-    kategorie = models.CharField(max_length=100)
+    kategorie = models.ForeignKey(Kategorie, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = _('Pferd')
@@ -123,14 +147,6 @@ class Pferd(models.Model):
     def __str__(self):
         return self.offizieller_name
 
-class Kurs(models.Model):
-    name = models.CharField(max_length=100)
-    beschreibung = models.TextField()
-    bild = models.ImageField(blank=True)
 
-    class Meta:
-        verbose_name = _('Kurs')
-        verbose_name_plural = _('Kurse')
 
-    def __str__(self):
-        return self.name
+
