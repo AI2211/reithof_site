@@ -19,8 +19,16 @@
         {{mistplan}}
     </div>
 <script>
-    function nameMistplan(button){
-        console.log(button.parentElement);
+    function nameMistplan(button, horsePower){
+            fetch(`/mitglieder/mistplan/insert/${button.value}/${horsePower}`)
+                .then(response=>{
+                    if (response.status === 200){
+                        button.innerHtml = response.userName;
+                    }
+                })
+                .catch(error => {
+                    console.log(`Fehler beim einfuegen: ${error}`);
+                });
     }
 </script>
 </body>

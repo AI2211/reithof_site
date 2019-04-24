@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from calendar import HTMLCalendar
+from datetime import date
 from mitgliederbereich.models import Event
 
 # *************************************** Calendar ***************************************************************
@@ -55,10 +56,10 @@ class Calendar(HTMLCalendar):
                 if (day != 0):
                     cal += '<tr>'
                     cal += f'<td>{day} {self._weekdays[weekday]}</td>'
-                    count = 0;
-                    while count < 4:
-                        cal += f'<td class="setName"><button type="button" onClick="nameMistplan(this)" value= >{"name"}</button></td>'
-                        count += 1
+                    horse_power = 0;
+                    while horse_power < 4:
+                        cal += f'<td class="setName"><button type="button" \ onClick="nameMistplan(this, {horse_power})" \ value={date(self.year, self.month,day)} > {"name"}</button></td>'
+                        horse_power += 1
                     cal += '</tr>'
         return cal
 
