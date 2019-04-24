@@ -17,36 +17,116 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'mitgliederbereich/mitgliederbereich_stylesheet.css' %}" media="screen"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mitgliederbereich/mitgliederbereich_stylesheet.css' %}"
+          media="screen"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css"/>
     <link rel="shortcut icon" href="{% static 'mitgliederbereich/favicon/favicon.png' %}"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-md navbar-light">
+    <a class="navbar-brand" href="{% url 'ritterstall' %}">Ritterstall</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-                    <a href="{% url 'ritterstall' %}">
-                       Hauptseite
-                    </a>
-                    <a href="{% url 'profil' %}">
-                        Mein Profil
-                    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'calendar' %}">Kalender</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'mistplan' %}">Mistplan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'pferde_management' %}">Meine Pferde</a>
+            </li>
+        </ul>
 
-                    <a href="{% url 'pferde_management' %}">
-                        Management
-                    </a>
+        <ul class="nav navbar-nav navbar-right">
 
-                    <a href="{% url 'email_change' %}">
-                       E-Mail-Adresse ändern
-                    </a>
-                    <a href="{% url 'password_change' %}">
-                        Passwort ändern
-                    </a>
-                    <a href="{% url 'edit_profil' %}">
-                        Persönliche Daten bearbeiten
-                    </a>
-                    <a href="{% url 'calendar' %}">Kalender</a>
-                    <a href="{%  url 'mistplan' %}">Mistplan</a>
+            <li class="">
+                <a class="nav-link" href="{% url 'profil' %}">Profil</a>
+            </li>
+            <li class="">
+                <a class="nav-link" href="{% url 'logout' %}">Ausloggen</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
 
 {% block body %}
 {% endblock %}
+
+<!-- Footer -->
+<footer style="background-color: #ff8300; color:white;">
+    <div style="background-color: #b15b00;">
+        <div class="container">
+            <div class="row py-4 d-flex align-items-center">
+                <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                    <h6 class="mb-0">Folge uns auf Facebook!</h6>
+                </div>
+                <div class="col-md-6 col-lg-7 text-center text-md-right">
+                    <!-- Facebook -->
+                    <a href="https://de-de.facebook.com/pages/category/Urban-Farm/Ritterstall-214276942404455/"
+                       class="fb-ic">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+        <div class="row mt-3">
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <h6 class="text-uppercase font-weight-bold">Ritterstall</h6>
+                <hr class="mb-4 mt-0 d-inline-block" style="width: 100px;">
+                <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet,
+                    consectetur
+                    adipisicing elit.</p>
+            </div>
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Weitere Links</h6>
+                <hr class="mb-4 mt-0 d-inline-block" style="width: 120px;">
+                <p>
+                    <a href="{% url 'impressum' %}">Impressum</a>
+                </p>
+                <p>
+                    <a href="{% url 'datenschutz' %}">Datenschutz</a>
+                </p>
+                <p>
+                    <a href="{% url 'kontakt' %}">Kontakt</a>
+                </p>
+
+            </div>
+
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                <!-- Kontakt -->
+                <h6 class="text-uppercase font-weight-bold">Kontakt</h6>
+                <hr class="mb-4 mt-0 d-inline-block " style="width: 80px;">
+                <p>Berkenhoffstrasse, 35745 Herborn</p>
+                <p>info@example.com</p>
+                <p>+49 0000 000000</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color: #b15b00; color: white;" class="text-center py-3">Ein Projekt von Studierenden der
+        Technischen Hochschule Mittelhessen
+    </div>
+
+
+</footer>
+
 </body>
 </html>

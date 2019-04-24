@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'mitgliederbereich/base.html' %}
+{% load static %}
+{% block title %}Meine Pferde{% endblock %}
+{% block body %}
 <h2>Meine Pferde: </h2>
 {% if not all_user_pferde %}
     <h2>Keine Pferde vorhanden</h2>
@@ -15,5 +12,4 @@
 {% endif %}
 
 
-</body>
-</html>
+{% endblock %}

@@ -1,6 +1,16 @@
 {% extends 'mitgliederbereich/base.html' %}
+{% load static %}
 {% block title %}Profil{% endblock %}
 {% block body %}
+    <a href="{% url 'email_change' %}">
+    E-Mail-Adresse ändern
+</a>
+<a href="{% url 'password_change' %}">
+    Passwort ändern
+</a>
+<a href="{% url 'edit_profil' %}">
+    Persönliche Daten bearbeiten
+</a>
 <h2>Vorname: {{ user.vorname }}</h2>
 <h2>Nachname: {{ user.nachname }}</h2>
 <h2>Letzte Anmeldung: {{ user.last_login }}</h2>

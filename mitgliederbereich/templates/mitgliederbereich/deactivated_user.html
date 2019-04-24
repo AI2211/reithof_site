@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'mitgliederbereich/base.html' %}
+{% load static %}
+{% block title %}User deaktiviert{% endblock %}
+{% block body %}
 {{ profile.email }} deaktiviert!
 <script> window.setTimeout(function(){
     window.location.href = "{% url 'profil' %}";
   }, 2000);;</script>
-</body>
-</html>
+{% endblock %}

@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Standort</title>
-</head>
-<body>
+{% extends 'mitgliederbereich/base.html' %}
+{% load static %}
+{% block title %}Standort{% endblock %}
+{% block body %}
 {% load leaflet_tags %}
     <head>    {% leaflet_js %}
     {% leaflet_css %}</head>
@@ -19,5 +16,4 @@
 
 
 });</script>
-</body>
-</html>
+{% endblock %}

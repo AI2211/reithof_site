@@ -1,12 +1,7 @@
-
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Kalender</title>
-</head>
-
-<body>
+{% extends 'mitgliederbereich/base.html' %}
+{% load static %}
+{% block title %}Kalender{% endblock %}
+{% block body %}
 
     <div>
         <ul>
@@ -20,5 +15,4 @@
         {{calendar}} <!-- variable get Calendar-items from view.py -->
     </div>
 
-</body>
-</html>
+{% endblock %}

@@ -1,11 +1,7 @@
-
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Mistplan</title>
-</head>
-<body>
+{% extends 'mitgliederbereich/base.html' %}
+{% load static %}
+{% block title %}Mistplan{% endblock %}
+{% block body %}
 
     <div>
         <ul>
@@ -30,5 +26,5 @@
                 });
     }
 </script>
-</body>
-</html>
+
+{% endblock %}

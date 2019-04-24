@@ -1,0 +1,81 @@
+/*--- Allgemeine Formatierung --*/
+body {
+    min-height: 100%;
+    background: #ffffff;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+body, html {
+    height: 100%;
+
+}
+h1, h2, h3, a{
+    word-wrap: break-word;
+}
+
+hr {
+    border-top: 2px solid #ff8300;
+    width: 6rem;
+    margin-top: 0.7rem;
+    margin-bottom: 1rem;
+}
+
+a{
+    color: black;
+    font-style: italic;
+    text-decoration: underline;
+}
+a:hover{
+    color: #ff8300;
+}
+header{
+    width:100%;
+}
+
+
+/*--- Bootstrap Padding Fix --*/
+[class*="col-"] {
+    padding: 1rem;
+}
+
+
+
+/*--- Navigation --*/
+
+footer a {
+    color: white;
+    text-decoration: underline;
+}
+footer a:hover {
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+nav a{
+    text-decoration: none;
+    font-style: normal;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    text-decoration: none;
+}
+
+.navbar-light .navbar-brand {
+    text-decoration: none;
+}
+
+/*--- Button --*/
+button {
+    color: white;
+    background-color: #ff8300;
+    /*margin-top: 1rem;*/
+}
+
+button:hover {
+    color: #ff8300;
+    background-color: white;
+    border-color: #ff8300;
+}
