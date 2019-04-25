@@ -1,7 +1,13 @@
 {% extends 'reithof_organizer/base.html' %}
 {% block title %}Ausgetragem{% endblock %}
 {% block body %}
-<h1>{{ request.user.email }} aus {{ kurs.name }} ausgetragen!</h1>
+    <div class="container">
+        <div class="role welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">{{ request.user.email }} aus {{ kurs.name }} ausgetragen!</h1>
+            </div>
+        </div>
+    </div>
     <script> window.setTimeout(function(){
     window.location.href = "{% url 'kurse' %}";
   }, 2000);;</script>

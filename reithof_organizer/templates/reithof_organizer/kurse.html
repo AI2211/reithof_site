@@ -1,5 +1,11 @@
 {% extends 'reithof_organizer/base.html' %}
+
+{% load crispy_forms_tags %}
+
 {% block title %}Aktuell{% endblock %}
+
+
+
 {% block body %}
     <div class="container-fluid padding">
         <div class="row welcome text-center">
@@ -27,35 +33,54 @@
                                 <button class="btn float-right">Löschen</button>
                             </a>
                         {% endif %}
+                        {% if user.is_staff %}
+                            <h2>Teilnehmerliste: </h2>
+                            {% if kurs.profile_set.all %}
+                                {% for profile in kurs.profile_set.all %}
+                                    <h2>{{ profile.email }}</h2>
+                                {% endfor %}
+                            {% else %}
+                                <h3>-->Keine Anmeldungen<--</h3>
+                            {% endif %}
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                            <a class="btn btn-primary" href="{% url 'eintragen_kurs' kurs.pk %}"
+                               id="kurs_button{{ kurs.pk }}">Kurs beitreten</a>
+                            {% if user.Kurse.all %}
+                                {% for user_kurs in user.Kurse.all %}
+                                    {% if user_kurs.pk == kurs.pk %}
+                                        <h2>Für diesen Kurs eingetragen</h2>
+                                        <script>document.getElementById("kurs_button{{ kurs.pk }}").href = "{% url 'ausgetragen_kurs' kurs.pk %}";
+                                        document.getElementById("kurs_button{{ kurs.pk }}").innerHTML = "Kurs verlassen";</script>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endif %}
                     </div>
                 </div>
 
             {% endfor %}
         </div>
     </div>
-    {% if user.is_superuser %}
-        <div class="container">
-            {% if error_message %}
-                <p><strong>{{ error_message }}</strong></p>
-            {% endif %}
-            <h2 class="display-4">Fügen Sie einen neuen Kurs hinzu</h2>
-            <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {% for field in form %}
-                    <div class="form-group">
-                        <span class="text-danger small">{{ field.errors }}</span>
 
-                        <label>{{ field.label_tag }}</label>
-                        <div class="row no-gutters">
-                            <div class="col-sm-10">{{ field }}</div>
-                        </div>
-                    </div>
-                {% endfor %}
-                <div class="form-group">
-                        <button type="submit" class="btn ">Submit</button>
-                </div>
-            </form>
+
+
+
+    {% if user.is_superuser %}
+        <div class="row justify-content-center">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h2>Kurs Hinzufügen</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy}}
+                    <button class="btn" type="submit">Kurs hinzufügen</button>
+                </form>
+            </div>
         </div>
+    </div>
+</div>
     {% endif %}
 
 {% endblock %}
