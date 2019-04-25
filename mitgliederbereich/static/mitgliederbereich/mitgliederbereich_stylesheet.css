@@ -79,3 +79,9 @@ button:hover {
     background-color: white;
     border-color: #ff8300;
 }
+
+button a{
+    color: white;
+    text-decoration: none;
+    font-style: normal;
+}

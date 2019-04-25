@@ -2,53 +2,159 @@
 {% load static %}
 {% block title %}Profil{% endblock %}
 {% block body %}
-    <a href="{% url 'email_change' %}">
-    E-Mail-Adresse ändern
-</a>
-<a href="{% url 'password_change' %}">
-    Passwort ändern
-</a>
-<a href="{% url 'edit_profil' %}">
-    Persönliche Daten bearbeiten
-</a>
-<h2>Vorname: {{ user.vorname }}</h2>
-<h2>Nachname: {{ user.nachname }}</h2>
-<h2>Letzte Anmeldung: {{ user.last_login }}</h2>
-<h2>E-Mail: {{ user.email }}</h2>
-<h2>Mistpunkte: {{ user.mistpunkte }}</h2>
-<h2>Erstellt am: {{ user.date_joined }}</h2>
-{% if user.is_active %}
-<h2>Account ist aktiviert</h2>
-{% endif %}
-{% if user.is_staff %}
-<h2>Account ist ein Mitarbeiter</h2>
-{% endif %}
-{% if user.is_superuser %}
-<h2>Account ist ein Admin</h2>
-{% endif %}
 
-{% if user.is_superuser %}
-    {% for profile in all_profiles %}
-        {% if not profile.is_superuser %}
-            <h2>User: {{ profile.email }}</h2>
-            {% if profile.is_active %}
-            <a class="btn btn-primary" href="{% url 'deactivate_profile' profile.pk %}">Deaktivieren</a>
-                {% else %}
-                <a class="btn btn-primary" href="{% url 'activate_profile' profile.pk %}">Aktivieren</a>
-            {% endif %}
-            {% if profile.is_staff %}
-            <a class="btn btn-primary" href="{% url 'not_staff_profile' profile.pk %}">Feuern</a>
-                {% else %}
-                <a class="btn btn-primary" href="{% url 'staff_profile' profile.pk %}">Zum Mitarbeiter machen</a>
-            {% endif %}
-            <a class="btn btn-primary" href="{% url 'delete_profil' profile.pk %}">Löschen</a>
+    <div class="container-fluid padding">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Profil</h1>
+            </div>
+            <hr>
+
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-6 mx-auto">
+                <div class="row">
+                    <div class="col-6 py-0">
+                        <label>Vorname</label>
+                    </div>
+                    <div class="col-6 py-0">
+                        <p>{{ user.vorname }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 py-0">
+                        <label>Nachname</label>
+                    </div>
+                    <div class="col-6 py-0">
+                        <p>{{ user.nachname }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 py-0">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-6 py-0">
+                        <p>{{ user.email }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 py-0">
+                        <label>Geburtsdatum</label>
+                    </div>
+                    <div class="col-6 py-0">
+                        <p>{{ user.geburtsdatum }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 py-0">
+                        <label>Status</label>
+                    </div>
+                    <div class="col-6 py-0">
+                        {% if user.is_active %}
+                            <p>Normaler User</p>
+
+                        {% elif user.is_staff %}
+                            <p>Superuser</p>
+
+                        {% elif user.is_superuser %}
+                            <p>Admin</p>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            window.onload = function () {
+
+                var chart = new Chart(document.getElementById("doughnut-chart"), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ["Gesammelte Mistpunkte", "Fehlende Mistpunkte"],
+                        datasets: [
+                            {
+                                label: "Mistpunkte",
+                                backgroundColor: ["#ff8300", "#d3d3d3"],
+                                data: [5, 28]
+                            }
+                        ]
+                    },
+                    responsive: true
+
+                });
+
+            }
+        </script>
+        <div class="col-sm-6 mt-5 mx-auto">
+            <p class="lead text-center">Mistpunkte: {{ user.mistpunkte }}</p>
+
+            <canvas id="doughnut-chart"></canvas>
+
+        </div>
+
+
+        <!--<h2>Vorname: {{ user.vorname }}</h2>
+        <h2>Nachname: {{ user.nachname }}</h2>
+        <h2>Letzte Anmeldung: {{ user.last_login }}</h2>
+        <h2>E-Mail: {{ user.email }}</h2>
+        <h2>Mistpunkte: {{ user.mistpunkte }}</h2>
+        <h2>Erstellt am: {{ user.date_joined }}</h2>
+        {% if user.is_active %}
+            <h2>Account ist aktiviert</h2>
         {% endif %}
-    {% endfor %}
-{% endif %}
+        {% if user.is_staff %}
+            <h2>Account ist ein Mitarbeiter</h2>
+        {% endif %}
+        {% if user.is_superuser %}
+            <h2>Account ist ein Admin</h2>
+        {% endif %}-->
 
-<h2>Meine Kurse: </h2>
-    {% for kurs in user.Kurse.all %}
-        {{ kurs.name }}
-    {% endfor %}
+        {% if user.is_superuser %}
+            {% for profile in all_profiles %}
+                <div class="mb-3">
+                    {% if not profile.is_superuser %}
+                        <p class="mb-0">User: {{ profile.email }}</p>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <Button class="btn">
+                                {% if profile.is_active %}
+                                    <a class="btn" href="{% url 'deactivate_profile' profile.pk %}">Deaktivieren</a>
+                                {% else %}
+                                    <a class="btn" href="{% url 'activate_profile' profile.pk %}">Aktivieren</a>
+                                {% endif %}
+                            </Button>
+                            <Button class="btn">
+                                {% if profile.is_staff %}
+                                    <a class="btn" href="{% url 'not_staff_profile' profile.pk %}">Feuern</a>
+                                {% else %}
+                                    <a class="btn" href="{% url 'staff_profile' profile.pk %}">Befördern</a>
+                                {% endif %}
+                            </Button>
+                            <Button class="btn">
+                                <a href="{% url 'delete_profil' profile.pk %}">Löschen</a></Button>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
 
+        <h2>Meine Kurse: </h2>
+        {% for kurs in user.Kurse.all %}
+            {{ kurs.name }}
+        {% endfor %}
+
+        <a href="{% url 'email_change' %}">
+            E-Mail-Adresse ändern
+        </a>
+        <a href="{% url 'password_change' %}">
+            Passwort ändern
+        </a>
+        <a href="{% url 'edit_profil' %}">
+            Persönliche Daten bearbeiten
+        </a>
+    </div>
 {% endblock %}
