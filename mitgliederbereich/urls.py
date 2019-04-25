@@ -32,6 +32,7 @@ urlpatterns = [
 
     path(r'calendar', views.CalendarView.as_view(), name='calendar'),
     path(r'mistplan', views.MistplanView.as_view(), name='mistplan'),
+    path(r'mistplan/<str:date>/<int:horsePower>', views.MistplanDetail.as_view()),
     path(r'event/new', views.event, name='event_new'),
 	path(r'event/edit/<event_id>/', views.event, name='event_edit'),
 ]

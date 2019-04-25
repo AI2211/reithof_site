@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from .forms import ProfileForm, ProfileChangeForm
 from django.contrib.auth.admin import UserAdmin
 
+
 class ProfileAdmin(UserAdmin):
     add_form = ProfileForm
     form = ProfileChangeForm

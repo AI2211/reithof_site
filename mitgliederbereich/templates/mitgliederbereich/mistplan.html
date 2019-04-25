@@ -2,29 +2,38 @@
 {% load static %}
 {% block title %}Mistplan{% endblock %}
 {% block body %}
+    <div>
+        <div>
+            <ul>
+                <li><a href="{% url 'mistplan' %}?{{ prev_month }}"> << </a></li>
+                <li><a href="{% url 'mistplan' %}?{{ next_month }}"> >> </a></li>
+                <li><a href="{% url 'profil' %}">Zum Profil</a></li>
+            </ul>
+        </div>
+        <div>
+            {{ mistplan }}
+        </div>
+    </div>
+    <script>
+        function nameMistplan(button, horsePower) {
+            const url = `/mitglieder/mistplan/${button.value}/${horsePower}`;
+            const request = {
+                method: "POST",
+                mode: "same-origin", // no-cors, cors, *same-origin
+                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: "same-origin",
+            };
+            fetch(url, request)
+                .then(response => {
 
-    <div>
-        <ul>
-            <li><a href="{% url 'mistplan' %}?{{ prev_month }}"> << </a></li>
-            <li><a href="{% url 'mistplan' %}?{{ next_month }}"> >> </a></li>
-            <li><a href="{% url 'profil' %}">Zum Profil</a></li>
-        </ul>
-    </div>
-    <div>
-        {{mistplan}}
-    </div>
-<script>
-    function nameMistplan(button, horsePower){
-            fetch(`/mitglieder/mistplan/insert/${button.value}/${horsePower}`)
-                .then(response=>{
-                    if (response.status === 200){
-                        button.innerHtml = response.userName;
+                    if (response.status === 200) {
+                        response.json().then(body => button.innerHTML = body.name).catch(error => console.log(error));
                     }
                 })
                 .catch(error => {
                     console.log(`Fehler beim einfuegen: ${error}`);
                 });
-    }
-</script>
+        }
+    </script>
 
 {% endblock %}
