@@ -1,5 +1,6 @@
 {% extends 'mitgliederbereich/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block title %}Meine Pferde{% endblock %}
 {% block body %}
 <h2>Meine Pferde: </h2>
@@ -10,6 +11,21 @@
         <a href="{% url 'pferd_standort' pferd.pk %}">{{ pferd.rufname }}</a>
     {% endfor %}
 {% endif %}
+
+    <div class="row justify-content-center mx-auto">
+    <div class="col-lg-4 col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h2>Pferd hinzufügen</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy}}
+                    <button class="btn" type="submit">Speichern</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}

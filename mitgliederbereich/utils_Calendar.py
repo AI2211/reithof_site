@@ -43,6 +43,7 @@ class Calendar(HTMLCalendar):
         cal += f'{self.formatweekheader()}\n'
         for week in self.monthdays2calendar(self.year, self.month):
             cal += f'{self.formatweek(week, events)}\n'
+        cal += '</table>'
         return cal
 
     #********************************************* Mistplan *************************************************************
@@ -58,7 +59,7 @@ class Calendar(HTMLCalendar):
                     cal += f'<td>{day} {self._weekdays[weekday]}</td>'
                     horse_power = 0;
                     while horse_power < 4:
-                        cal += f'<td class="setName"><button type="button"\
+                        cal += f'<td class="setName"><button class="btMistplan" type="button"\
                         onClick="nameMistplan(this,{horse_power})"\
                         value={date(self.year, self.month,day)} >{"name"}</button></td>'
                         horse_power += 1

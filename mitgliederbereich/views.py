@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.contrib.auth.forms import get_user_model
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import EmailChangeForm, ProfileChangeForm
+from .forms import EmailChangeForm, ProfileChangeForm, AddPferdForm
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -108,7 +108,16 @@ def email_change_done(request):
 @login_required
 def pferde_management(request):
     all_user_pferde = Pferd.objects.all().filter(besitzer=request.user)
-    return render(request, 'mitgliederbereich/pferde_management.html', {'all_user_pferde': all_user_pferde})
+
+    if request.method == "POST":
+        form = AddPferdForm(request.POST)
+        if form.is_valid():
+            form.save()
+            form = AddPferdForm()
+    else:
+        form = AddPferdForm()
+
+    return render(request, 'mitgliederbereich/pferde_management.html', {'all_user_pferde': all_user_pferde, 'form': form})
 
 @login_required
 def meine_kurse(request):

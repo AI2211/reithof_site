@@ -7,6 +7,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import get_user_model
 
+from reithof_organizer.models import Pferd
 from mitgliederbereich.models import Event
 from django.forms import ModelForm, DateInput
 
@@ -109,3 +110,7 @@ class EventForm(ModelForm):
         self.fields['start_time'].input_formats = ('%Y-%m-%dT%H:%M',)
         self.fields['end_time'].input_formats = ('%Y-%m-%dT%H:%M',)
 
+class AddPferdForm(forms.ModelForm):
+    class Meta:
+        model = Pferd
+        fields = '__all__'
