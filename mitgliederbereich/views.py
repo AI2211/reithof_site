@@ -11,7 +11,7 @@ from django.utils.dateparse import parse_date
 from django.contrib.auth.decorators import login_required
 
 
-from reithof_organizer.models import *
+from webauftritt.models import *
 
 from django.views import generic  # Calendar
 from django.utils.safestring import mark_safe  # Calendar

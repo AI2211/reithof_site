@@ -7,7 +7,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import get_user_model
 
-from reithof_organizer.models import Pferd
+from webauftritt.models import Pferd
 from mitgliederbereich.models import Event
 from django.forms import ModelForm, DateInput
 

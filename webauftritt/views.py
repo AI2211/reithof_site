@@ -47,13 +47,13 @@ def kurse(request):
 
 
 def galerie(request):
-    path = "reithof_organizer/static/reithof_organizer/images"
+    path = "webauftritt/static/webauftritt/images"
     dirs = os.listdir(path)
 
     for file in dirs:
         print(file)
     images_dict = {key: i for i, key in enumerate(dirs)}
-    #files = os.listdir(os.path.join(settings.STATIC_ROOT, "reithof_organizer/images"))
+    #files = os.listdir(os.path.join(settings.STATIC_ROOT, "webauftritt/images"))
     return render(request, 'reithof_organizer/galerie.html', {'images_dict': images_dict})
 
 

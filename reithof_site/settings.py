@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'reithof_organizer.apps.ReithofOrganizerConfig',
+    'webauftritt.apps.ReithofOrganizerConfig',
     'mitgliederbereich.apps.MitgliederbereichConfig',
     'cookielaw',
     'crispy_forms',
@@ -84,7 +84,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'mitgliederbereich', 'templates'),
-                 os.path.join(BASE_DIR, 'reithof_organizer', 'templates'),
+                 os.path.join(BASE_DIR, 'webauftritt', 'templates'),
                 os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
@@ -149,6 +149,6 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-AUTH_USER_MODEL = 'reithof_organizer.Profile'
+AUTH_USER_MODEL = 'webauftritt.Profile'
 
 LOGIN_REDIRECT_URL = 'ritterstall'
