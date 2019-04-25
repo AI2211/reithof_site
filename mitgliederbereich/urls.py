@@ -29,7 +29,7 @@ urlpatterns = [
 
     path(r'edit-profil/', views.edit_profil, name='edit_profil'),
 
-    path(r'edit-profil-success/', views.edit_profil, name='edit_profil_success'),
+    path(r'edit-profil-success/', views.edit_profil_success, name='edit_profil_success'),
 
     path(r'calendar', views.CalendarView.as_view(), name='calendar'),
     path(r'mistplan', views.MistplanView.as_view(), name='mistplan'),

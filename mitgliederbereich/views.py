@@ -36,13 +36,16 @@ def profil(request):
 
 def edit_profil(request):
     if request.method == 'POST':
-        form = ProfileChangeForm(request.POST)
+        form = ProfileChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('edit_profil_success')
     else:
         form = ProfileChangeForm()
     return render(request, 'mitgliederbereich/edit_profil.html', {'form': form})
+
+def edit_profil_success(request):
+    return render(request, 'mitgliederbereich/edit_profil_success.html')
 
 
 def profile_set_active(request, pk):
