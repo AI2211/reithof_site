@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     'mitgliederbereich.apps.MitgliederbereichConfig',
     'cookielaw',
     'crispy_forms',
-    'leaflet'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

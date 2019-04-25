@@ -43,8 +43,6 @@ class Profile(AbstractBaseUser, PermissionsMixin):
             'unique': _("Ein Nutzer mit dieser E-Mail-Adresse existiert bereits!"),
         },
     )
-    #Geburtsdatum
-    geburtsdatum = models.DateField(_('Geburtsdatum'), auto_now_add=False, auto_now=False, null=True, blank=True)
     #Mistpunkte
     mistpunkte = models.IntegerField(null=True, blank=True)
     #Erstellt am
