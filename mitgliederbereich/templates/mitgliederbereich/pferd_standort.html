@@ -2,10 +2,6 @@
 {% load static %}
 {% block title %}Standort{% endblock %}
 {% block body %}
-{% load leaflet_tags %}
-    <head>    {% leaflet_js %}
-    {% leaflet_css %}</head>
-{% leaflet_map "pferd_map" %}
 
     <script>$(window).on('map:init', function (e) {
     var detail = e.originalEvent ?
