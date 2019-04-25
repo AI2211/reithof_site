@@ -1,0 +1,15 @@
+{% extends 'mitgliederbereich/base.html' %}
+{% load static %}
+{% block title %}Kurse{% endblock %}
+{% block body %}
+<h2>Meine Kurse: </h2>
+{% if not kurse %}
+    <h2>In keinem Kurs eingetragen</h2>
+    {% else %}
+    {% for kurs in kurse %}
+        <h1>{{ kurs.name }}</h1>
+    {% endfor %}
+{% endif %}
+
+
+{% endblock %}

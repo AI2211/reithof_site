@@ -58,7 +58,9 @@ class Calendar(HTMLCalendar):
                     cal += f'<td>{day} {self._weekdays[weekday]}</td>'
                     horse_power = 0;
                     while horse_power < 4:
-                        cal += f'<td class="setName"><button type="button" \ onClick="nameMistplan(this, {horse_power})" \ value={date(self.year, self.month,day)} > {"name"}</button></td>'
+                        cal += f'<td class="setName"><button type="button"\
+                        onClick="nameMistplan(this,{horse_power})"\
+                        value={date(self.year, self.month,day)} >{"name"}</button></td>'
                         horse_power += 1
                     cal += '</tr>'
         return cal
