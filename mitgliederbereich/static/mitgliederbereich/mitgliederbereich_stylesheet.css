@@ -90,3 +90,91 @@ button a{
 #pferd_navigation{
     height: 600px;
 }
+
+/*----------------------Mistplan-------------------------*/
+
+.li_Links{
+    list-style-type: none;
+}
+
+.btMistplan{
+    border: none;
+    color: #222222;
+    background: #ffffff;
+}
+
+.table_Mistplan{
+    border-collapse: collapse;
+}
+.Mistplan{
+    margin: 15px;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.btn{
+    text-decoration: none;
+    color: black;
+    background-color: transparent;
+    border: none;
+}
+.btn:hover{
+    background-color: transparent;
+    color: black;
+}
+.clearfix{
+    margin: 15px;
+}
+/*------------Kalendar----------------------*/
+.form{
+    margin: auto;
+}
+.form input, .form select, .form textarea {
+    border-radius: 3px;
+    border: 1px solid darkgrey;
+    outline: none;
+    background: none;
+    padding: 5px;
+    width: 100%;
+}
+.calendar {
+  width: 80%;
+  margin: auto;
+  font-size: 13px;
+}
+
+.calendar tr, .calendar td {
+  border: 1px solid black;
+}
+
+.calendar th {
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.calendar td {
+  width: 200px;
+  height: 150px;
+  padding: 20px 0px 0px 5px;
+}
+
+.month {
+  font-size: 25px;
+}
+
+.date {
+  font-size: 16px;
+}
+
+.ul_calendar {
+  height: 100%;
+  padding: 0px 5px 0px 20px;
+}
+
+.a_calendar {
+  color: #17a2b8;
+}
