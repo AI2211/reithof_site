@@ -2,14 +2,19 @@
 {% load static %}
 {% block title %}Standort{% endblock %}
 {% block body %}
+    <div id="pferd_navigation"></div>
+    <script>
+    var mymap = L.map('pferd_navigation').setView([ 50.6576643,8.2979608], 13);
 
-    <script>$(window).on('map:init', function (e) {
-    var detail = e.originalEvent ?
-                 e.originalEvent.detail : e.detail;
-    map.setView(new L.LatLng({{ pferd.kategorie.lat }},{{ pferd.kategorie.long }}));
-    map.setZoom(3);
-    L.marker([{{ pferd.kategorie.lat }},{{ pferd.kategorie.long }}]).addTo(detail.map).bindPopup("<b>Hallo!</b><br>Mein Rufname ist {{ pferd.rufname }} und ich bin hier!").openPopup();
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1Ijoib3JyeW4iLCJhIjoiY2o2bnZkY21nMGN0azJxb3Z6OTZuNmNtYSJ9.UapnE8mYYeYaImy2dGchsw'
+}).addTo(mymap);
+
+    var marker = L.marker([{{ pferd.kategorie.lat }}, {{ pferd.kategorie.long }}]).addTo(mymap).bindPopup("<b>Hallo!</b><br>Mein Rufname ist {{ pferd.rufname }} und ich bin hier!").openPopup();
 
 
-});</script>
+</script>
 {% endblock %}

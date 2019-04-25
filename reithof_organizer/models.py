@@ -120,8 +120,8 @@ class Eintrag(models.Model):
 
 class Kategorie(models.Model):
     name = models.CharField(max_length=100)
-    long = models.IntegerField(blank=True)
-    lat = models.IntegerField(blank=True)
+    long = models.FloatField(blank=True)
+    lat = models.FloatField(blank=True)
 
     class Meta:
         verbose_name =_('Kategorie')

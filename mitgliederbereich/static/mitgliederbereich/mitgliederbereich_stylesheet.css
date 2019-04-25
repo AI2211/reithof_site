@@ -85,3 +85,8 @@ button a{
     text-decoration: none;
     font-style: normal;
 }
+
+/*--Leaflet--*/
+#pferd_navigation{
+    height: 600px;
+}
