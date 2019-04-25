@@ -13,7 +13,7 @@
     accessToken: 'pk.eyJ1Ijoib3JyeW4iLCJhIjoiY2o2bnZkY21nMGN0azJxb3Z6OTZuNmNtYSJ9.UapnE8mYYeYaImy2dGchsw'
 }).addTo(mymap);
 
-    var marker = L.marker([{{ pferd.kategorie.lat }}, {{ pferd.kategorie.long }}]).addTo(mymap).bindPopup("<b>Hallo!</b><br>Mein Rufname ist {{ pferd.rufname }} und ich bin hier!").openPopup();
+    var marker = L.marker([{{ pferd.kategorie.long }}, {{ pferd.kategorie.lat }}]).addTo(mymap).bindPopup("<b>Hallo!</b><br>Mein Rufname ist {{ pferd.rufname }} und ich bin hier!").openPopup();
 
 
 </script>
