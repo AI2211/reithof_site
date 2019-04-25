@@ -8,6 +8,9 @@ from django.utils.decorators import method_decorator
 from django.http import JsonResponse
 from django.utils.dateparse import parse_date
 
+from django.contrib.auth.decorators import login_required
+
+
 from reithof_organizer.models import *
 
 from django.views import generic  # Calendar
@@ -24,16 +27,16 @@ from django import forms
 from .forms import EventForm  # Calendar
 import calendar  # Calendar
 
-
+@login_required
 def index(request):
     return render(request, 'mitgliederbereich/base.html')
 
-
+@login_required
 def profil(request):
     all_profiles = Profile.objects.all()
     return render(request, 'mitgliederbereich/profil.html', {'all_profiles': all_profiles})
 
-
+@login_required
 def edit_profil(request):
     if request.method == 'POST':
         form = ProfileChangeForm(request.POST, instance=request.user)
@@ -44,10 +47,11 @@ def edit_profil(request):
         form = ProfileChangeForm()
     return render(request, 'mitgliederbereich/edit_profil.html', {'form': form})
 
+@login_required
 def edit_profil_success(request):
     return render(request, 'mitgliederbereich/edit_profil_success.html')
 
-
+@login_required
 def profile_set_active(request, pk):
     profile = get_object_or_404(Profile, pk=pk)
     profile.is_active = True
@@ -55,7 +59,7 @@ def profile_set_active(request, pk):
 
     return render(request, 'mitgliederbereich/activated_user.html', {'profile': profile})
 
-
+@login_required
 def profile_set_not_active(request, pk):
     profile = get_object_or_404(Profile, pk=pk)
     profile.is_active = False
@@ -63,7 +67,7 @@ def profile_set_not_active(request, pk):
 
     return render(request, 'mitgliederbereich/deactivated_user.html', {'profile': profile})
 
-
+@login_required
 def profile_set_staff(request, pk):
     profile = get_object_or_404(Profile, pk=pk)
     profile.is_staff = True
@@ -71,7 +75,7 @@ def profile_set_staff(request, pk):
 
     return render(request, 'mitgliederbereich/is_staff_user.html', {'profile': profile})
 
-
+@login_required
 def profile_set_not_staff(request, pk):
     profile = get_object_or_404(Profile, pk=pk)
     profile.is_staff = False
@@ -79,14 +83,14 @@ def profile_set_not_staff(request, pk):
 
     return render(request, 'mitgliederbereich/is_not_staff_user.html', {'profile': profile})
 
-
+@login_required
 def profile_delete(request, pk):
     profile = get_object_or_404(Profile, pk=pk)
     profile.delete()
 
     return render(request, 'mitgliederbereich/deleted_user.html', {'profile': profile})
 
-
+@login_required
 def email_change(request):
     if request.method == 'POST':
         form = EmailChangeForm(request.user, data=request.POST)
@@ -97,15 +101,16 @@ def email_change(request):
         form = EmailChangeForm(request.user)
     return render(request, 'mitgliederbereich/email_change.html', {'form': form})
 
-
+@login_required
 def email_change_done(request):
     return render(request, 'mitgliederbereich/email_change_done.html')
 
-
+@login_required
 def pferde_management(request):
     all_user_pferde = Pferd.objects.all().filter(besitzer=request.user)
     return render(request, 'mitgliederbereich/pferde_management.html', {'all_user_pferde': all_user_pferde})
 
+@login_required
 def meine_kurse(request):
     profile = get_object_or_404(Profile, pk=request.user.pk)
     all_user_kurse = profile.Kurse.all()
@@ -113,13 +118,13 @@ def meine_kurse(request):
     return render(request, 'mitgliederbereich/kurse.html', {'kurse': all_user_kurse})
 
 
-
+@login_required
 def pferd_standort(reqiest, pk):
     pferd = get_object_or_404(Pferd, pk=pk)
 
     return render(reqiest, 'mitgliederbereich/pferd_standort.html', {'pferd': pferd})
 
-
+@login_required
 def set_mistpunkte_to_user(request, points):
     profile = get_object_or_404(Profile, pk=request.user.pk)
     profile.set_mistpunkte(points)
