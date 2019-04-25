@@ -103,6 +103,13 @@ def pferde_management(request):
     all_user_pferde = Pferd.objects.all().filter(besitzer=request.user)
     return render(request, 'mitgliederbereich/pferde_management.html', {'all_user_pferde': all_user_pferde})
 
+def meine_kurse(request):
+    profile = get_object_or_404(Profile, pk=request.user.pk)
+    all_user_kurse = profile.Kurse.all()
+
+    return render(request, 'mitgliederbereich/kurse.html', {'kurse': all_user_kurse})
+
+
 
 def pferd_standort(reqiest, pk):
     pferd = get_object_or_404(Pferd, pk=pk)

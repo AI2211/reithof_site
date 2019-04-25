@@ -20,6 +20,7 @@ urlpatterns = [
 
     path(r'management/', views.pferde_management, name='pferde_management'),
     path(r'standort/<int:pk>/', views.pferd_standort, name='pferd_standort'),
+    path(r'meine-kurse/', views.meine_kurse, name='meine_kurse'),
 
 
     path(r'password-change/', auth_views.PasswordChangeView.as_view(template_name='mitgliederbereich/password_change.html'), name='password_change'),
@@ -35,4 +36,6 @@ urlpatterns = [
     path(r'mistplan/<str:date>/<int:horsePower>', views.MistplanDetail.as_view()),
     path(r'event/new', views.event, name='event_new'),
 	path(r'event/edit/<event_id>/', views.event, name='event_edit'),
+
+
 ]
