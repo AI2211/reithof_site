@@ -13,7 +13,7 @@
                     {% csrf_token %}
                     {{ profile_form|crispy}}
                     <button class="btn" type="submit">Registrieren</button>
-                    <a href="{% url 'login' %}" class="btn btn-outline-warning float-right">Bereits Mitglied?</a>
+                    <a href="{% url 'login' %}" class="btnMistplan btn-outline-warning float-right">Bereits Mitglied?</a>
                 </form>
             </div>
         </div>

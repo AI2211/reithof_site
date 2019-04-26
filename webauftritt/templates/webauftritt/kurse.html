@@ -30,13 +30,13 @@
                         <p class="card-text">{{ kurs.beschreibung }}</p>
 
                         {% if user.is_staff %}
-                            <h2>Teilnehmerliste: </h2>
+                            <p>Teilnehmerliste: <br>
                             {% if kurs.profile_set.all %}
                                 {% for profile in kurs.profile_set.all %}
-                                    <h2>{{ profile.email }}</h2>
+                                    {{ profile.email }}</p>
                                 {% endfor %}
                             {% else %}
-                                <h3>-->Keine Anmeldungen<--</h3>
+                                -->Keine Anmeldungen<--</p>
                             {% endif %}
                         {% endif %}
                         {% if user.is_superuser %}
@@ -51,7 +51,6 @@
                             {% if user.Kurse.all %}
                                 {% for user_kurs in user.Kurse.all %}
                                     {% if user_kurs.pk == kurs.pk %}
-                                        <h2>Für diesen Kurs eingetragen</h2>
                                         <script>document.getElementById("kurs_button{{ kurs.pk }}").href = "{% url 'ausgetragen_kurs' kurs.pk %}";
                                         document.getElementById("kurs_button{{ kurs.pk }}").innerHTML = "Kurs verlassen";</script>
                                     {% endif %}

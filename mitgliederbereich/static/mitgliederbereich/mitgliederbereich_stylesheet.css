@@ -116,13 +116,13 @@ button a{
 .right{
     float: right;
 }
-.btn{
+.btnMistplan{
     text-decoration: none;
     color: black;
     background-color: transparent;
     border: none;
 }
-.btn:hover{
+.btnMistplan:hover{
     background-color: transparent;
     color: black;
 }

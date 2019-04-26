@@ -17,7 +17,10 @@
     {% else %}
     {% for pferd in all_user_pferde %}
         {% if pferd.bild %}
-        <a href="{% url 'pferd_standort' pferd.pk %}"><img src="{{ pferd.bild.url }}" width="300" height="300"></a>
+                    <div class="container mb-5">
+
+        <a href="{% url 'pferd_standort' pferd.pk %}"><img class="img-fluid" src="{{ pferd.bild.url }}"></a>
+                    </div>
         {% else %}
         <a href="{% url 'pferd_standort' pferd.pk %}">KEIN BILD</a>
         {% endif %}
