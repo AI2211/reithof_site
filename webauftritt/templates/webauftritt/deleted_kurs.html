@@ -1,0 +1,15 @@
+{% extends 'webauftritt/base.html' %}
+{% block title %}Gelöscht: {{ kurs.name }}{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="role welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">{{ kurs.name }} gelöscht!</h1>
+            </div>
+        </div>
+        <script> window.setTimeout(function () {
+            window.location.href = "{% url 'kurse' %}";
+        }, 2000);
+        ;</script>
+    </div>
+{% endblock %}

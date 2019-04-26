@@ -1,0 +1,63 @@
+{% extends 'webauftritt/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}News{% endblock %}
+{% block body %}
+
+
+
+    <div class="container-fluid padding">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">News</h1>
+            </div>
+            <hr>
+
+        </div>
+    </div>
+
+    {% for eintrag in all_eintrag %}
+        <div class="container mb-5">
+            <h2 class="display-4">{{ eintrag.titel }}
+                <small class="text-muted">Artikel vom: {{ eintrag.erstellt_am }}</small>
+            </h2>
+            <h3 class="display-4">Kategorie: {{ eintrag.kategorie }}</h3>
+            <blockquote class="blockquote">
+                <p>{{ eintrag.nachricht }}</p>
+                <footer class="blockquote-footer">Ertellt von: <cite
+                        title="Author">{{ eintrag.autor.vorname }} {{ eintrag.autor.nachname }}</cite></footer>
+            </blockquote>
+            {% if eintrag.bild %}
+                <img class="img-fluid" src="{{ eintrag.bild.url }}">
+            {% else %}
+                <h2>KEIN BILD</h2>
+            {% endif %}
+            {% if user.is_superuser %}
+                <div class="d-flex justify-content-end ">
+                    <a href="{% url 'delete_news' eintrag.pk %}">
+                        <button class="btn">Löschen</button>
+                    </a>
+                </div>
+            {% endif %}
+
+        </div>
+
+    {% endfor %}
+    {% if user.is_superuser %}
+      <div class="row justify-content-center mx-auto">
+    <div class="col-lg-4 col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h2>News hinzufügen</h2>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy}}
+                    <button class="btn" type="submit">News hinzufügen</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

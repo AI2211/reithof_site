@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import nameMistplan
+from .models import Event
 
-# Register your models here.
+admin.site.register(nameMistplan)
+admin.site.register(Event)

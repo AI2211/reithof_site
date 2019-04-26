@@ -57,10 +57,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'reithof_organizer.apps.ReithofOrganizerConfig',
+    'webauftritt.apps.ReithofOrganizerConfig',
     'mitgliederbereich.apps.MitgliederbereichConfig',
-    'leaflet'
+    'cookielaw',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -81,7 +84,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'mitgliederbereich', 'templates'),
-                 os.path.join(BASE_DIR, 'reithof_organizer', 'templates'),
+                 os.path.join(BASE_DIR, 'webauftritt', 'templates'),
                 os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
@@ -104,12 +107,8 @@ WSGI_APPLICATION = 'reithof_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dvgdvlfu',
-        'USER': 'dvgdvlfu',
-        'PASSWORD': '5Rm8t2_Trzd2JV5XaH065kCPL418i3wB',
-        'HOST': 'manny.db.elephantsql.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -150,15 +149,6 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-AUTH_USER_MODEL = 'reithof_organizer.Profile'
+AUTH_USER_MODEL = 'webauftritt.Profile'
 
 LOGIN_REDIRECT_URL = 'ritterstall'
-
-#NOMINATIM
-LEAFLET_CONFIG = {
-#'SPATIAL_EXTENT': (5.0, 44.0, 7.5, 46),
-'DEFAULT_CENTER': (50.6576643,8.2979608),
-'DEFAULT_ZOOM': 16,
-'MIN_ZOOM': 3,
-'MAX_ZOOM': 18,
-}

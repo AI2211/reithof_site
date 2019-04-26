@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{{ profile.email }} zum Mitarbeiter befördert!
+{% extends 'mitgliederbereich/base.html' %}
+{% load static %}
+{% block title %}User befördert{% endblock %}
+{% block body %}
+
+        <div class="container">
+        <div class="role welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">{{ profile.email }} zum Mitarbeiter befördert!</h1>
+            </div>
+        </div>
+    </div>
+
+
+
+
 <script> window.setTimeout(function(){
     window.location.href = "{% url 'profil' %}";
   }, 2000);;</script>
-</body>
-</html>
+{% endblock %}

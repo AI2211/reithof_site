@@ -1,20 +1,21 @@
-{% if error_message %}
-                        <p><strong>{{ error_message }}</strong></p>
-                    {% endif %}
-                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% for field in form %}
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <span class="text-danger small">{{ field.errors }}</span>
-                                </div>
-                                <label class="control-label col-sm-2">{{ field.label_tag }}</label>
-                                <div class="col-sm-10">{{ field }}</div>
-                            </div>
-                        {% endfor %}
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Bestätigen</button>
-                            </div>
-                        </div>
-                    </form>
+{% extends 'mitgliederbereich/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}E-Mail-Adresse ändern{% endblock %}
+{% block body %}
+<div class="row justify-content-center mx-auto">
+    <div class="col-lg-4 col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h2>Email-Adresse ändern</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy}}
+                    <button class="btnMistplan" type="submit">Email-Adresse ändern</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

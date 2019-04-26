@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^reithof/', include('reithof_organizer.urls')),
+    url(r'^reithof/', include('webauftritt.urls')),
     url(r'^mitglieder/', include('mitgliederbereich.urls')),
     url(r'^admin/', admin.site.urls),
 ]

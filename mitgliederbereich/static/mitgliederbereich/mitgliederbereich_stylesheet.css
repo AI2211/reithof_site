@@ -1,0 +1,181 @@
+/*--- Allgemeine Formatierung --*/
+body {
+    min-height: 100%;
+    background: #ffffff;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+body, html {
+    height: 100%;
+
+}
+h1, h2, h3, a{
+    word-wrap: break-word;
+}
+
+hr {
+    border-top: 2px solid #ff8300;
+    width: 6rem;
+    margin-top: 0.7rem;
+    margin-bottom: 1rem;
+}
+
+a{
+    color: black;
+    font-style: italic;
+    text-decoration: underline;
+}
+a:hover{
+    color: #ff8300;
+}
+header{
+    width:100%;
+}
+
+
+/*--- Bootstrap Padding Fix --*/
+[class*="col-"] {
+    padding: 1rem;
+}
+
+
+
+/*--- Navigation --*/
+
+footer a {
+    color: white;
+    text-decoration: underline;
+}
+footer a:hover {
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+nav a{
+    text-decoration: none;
+    font-style: normal;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    text-decoration: none;
+}
+
+.navbar-light .navbar-brand {
+    text-decoration: none;
+}
+
+/*--- Button --*/
+button {
+    color: white;
+    background-color: #ff8300;
+    /*margin-top: 1rem;*/
+}
+
+button:hover {
+    color: #ff8300;
+    background-color: white;
+    border-color: #ff8300;
+}
+
+button a{
+    color: white;
+    text-decoration: none;
+    font-style: normal;
+}
+
+/*--Leaflet--*/
+#pferd_navigation{
+    height: 500px;
+    width: 500px;
+}
+
+/*----------------------Mistplan-------------------------*/
+
+.li_Links{
+    list-style-type: none;
+}
+
+.btMistplan{
+    border: none;
+    color: #222222;
+    background: #ffffff;
+}
+
+.table_Mistplan{
+    border-collapse: collapse;
+}
+.Mistplan{
+    margin: 15px;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.btnMistplan{
+    text-decoration: none;
+    color: black;
+    background-color: transparent;
+    border: none;
+}
+.btnMistplan:hover{
+    background-color: transparent;
+    color: black;
+}
+.clearfix{
+    margin: 15px;
+}
+/*------------Kalendar----------------------*/
+.form{
+    margin: auto;
+}
+.form input, .form select, .form textarea {
+    border-radius: 3px;
+    border: 1px solid darkgrey;
+    outline: none;
+    background: none;
+    padding: 5px;
+    width: 100%;
+}
+.calendar {
+  width: 80%;
+  margin: auto;
+  font-size: 13px;
+}
+
+.calendar tr, .calendar td {
+  border: 1px solid black;
+}
+
+.calendar th {
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.calendar td {
+  width: 200px;
+  height: 150px;
+  padding: 20px 0px 0px 5px;
+}
+
+.month {
+  font-size: 25px;
+}
+
+.date {
+  font-size: 16px;
+}
+
+.ul_calendar {
+  height: 100%;
+  padding: 0px 5px 0px 20px;
+}
+
+.a_calendar {
+  color: #17a2b8;
+}

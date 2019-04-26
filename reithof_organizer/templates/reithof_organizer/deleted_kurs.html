@@ -1,8 +1,0 @@
-{% extends 'reithof_organizer/base.html' %}
-{% block title %}Gelöscht: {{ kurs.name }}{% endblock %}
-{% block body %}
-<h1>{{ kurs.name }} gelöscht!</h1>
-    <script> window.setTimeout(function(){
-    window.location.href = "{% url 'kurse' %}";
-  }, 2000);;</script>
-{% endblock %}

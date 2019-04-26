@@ -18,8 +18,28 @@ urlpatterns = [
     path(r'email-change/', views.email_change, name='email_change'),
     path(r'email-change-done/', views.email_change_done, name='email_change_done'),
 
+    path(r'management/', views.pferde_management, name='pferde_management'),
+    path(r'standort/<int:pk>/', views.pferd_standort, name='pferd_standort'),
+    path(r'meine-kurse/', views.meine_kurse, name='meine_kurse'),
+
 
     path(r'password-change/', auth_views.PasswordChangeView.as_view(template_name='mitgliederbereich/password_change.html'), name='password_change'),
 
     path(r'password-change-done/', auth_views.PasswordChangeDoneView.as_view(template_name='mitgliederbereich/password_change_done.html'), name='password_change_done'),
+
+    path(r'edit-profil/', views.edit_profil, name='edit_profil'),
+
+    path(r'edit-profil-success/', views.edit_profil_success, name='edit_profil_success'),
+
+    path(r'edit-pferd/<int:pk>/', views.edit_pferd, name='edit_pferd'),
+    path(r'edit-pferd-success/', views.edit_pferd_success, name='edit_pferd_success'),
+
+    path(r'calendar', views.CalendarView.as_view(), name='calendar'),
+    path(r'mistplan', views.MistplanView.as_view(), name='mistplan'),
+    path(r'mistplan/<str:date>/<int:horsePower>', views.MistplanDetail.as_view()),
+    path(r'event/new', views.event, name='event_new'),
+	path(r'event/edit/<event_id>/', views.event, name='event_edit'),
+
+    path(r'delete-pferd/<int:pk>/', views.delete_pferd, name="delete_pferd"),
+
 ]

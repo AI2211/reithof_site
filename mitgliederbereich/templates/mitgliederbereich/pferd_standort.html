@@ -1,0 +1,97 @@
+{% extends 'mitgliederbereich/base.html' %}
+{% load static %}
+{% block title %}Standort{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+    <div class="row">
+    <div id="pferd_navigation" class="col-sm"></div>
+    <script>
+        var mymap = L.map('pferd_navigation').setView([{{ pferd.kategorie.long }}, {{ pferd.kategorie.lat }}], 13);
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1Ijoib3JyeW4iLCJhIjoiY2o2bnZkY21nMGN0azJxb3Z6OTZuNmNtYSJ9.UapnE8mYYeYaImy2dGchsw'
+        }).addTo(mymap);
+
+        var marker = L.marker([{{ pferd.kategorie.long }}, {{ pferd.kategorie.lat }}]).addTo(mymap).bindPopup("<b>Hallo!</b><br>Mein Rufname ist {{ pferd.rufname }} und ich bin hier!").openPopup();
+        mymap.panTo(new L.LatLng({{ pferd.kategorie.long }}, {{ pferd.kategorie.lat }}));
+    </script>
+    <div id="pferd_daten" class="col-sm">
+    <div class="container-fluid padding">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">{{ pferd.rufname }}</h1>
+            </div>
+            <hr>
+
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-6 mx-auto">
+                <div class="row">
+                    <div class="col-6 py-0">
+                        <label>Offizieller Name</label>
+                    </div>
+                    <div class="col-6 py-0">
+                        <p>{{ pferd.offizieller_name }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 py-0">
+                        <label>Rufname</label>
+                    </div>
+                    <div class="col-6 py-0">
+                        <p>{{ pferd.rufname }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 py-0">
+                        <label>Geburtstag</label>
+                    </div>
+                    <div class="col-6 py-0">
+                        {% if not pferd.geburtstag %}
+                            <p>Kein Geburtsdatum gesetzt</p>
+                        {% else %}
+                            <p>{{ pferd.geburtstag }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 py-0">
+                        <label>Kategorie</label>
+                    </div>
+                    <div class="col-6 py-0">
+                        <p>{{ pferd.kategorie }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 py-0 pr-5">
+                        <a href="{% url 'edit_pferd' pferd.pk %}">
+                                <button class="btn float-left">Editieren</button>
+                            </a>
+                    </div>
+                    <div class="col-6 py-0">
+                        <a href="{% url 'delete_pferd' pferd.pk %}">
+                                <button class="btn float-right">Löschen</button>
+                            </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="pferd_bild" class="col-sm">
+    {% if not pferd.bild %}
+    <h1>KEIN BILD</h1>
+    {% else %}
+    <img src="{{ pferd.bild.url }}">
+    {% endif %}
+    </div>
+    </div>
+    </div>
+{% endblock %}

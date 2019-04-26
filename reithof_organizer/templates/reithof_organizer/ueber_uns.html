@@ -1,7 +1,0 @@
-{% extends 'reithof_organizer/base.html' %}
-{% block title %}Über Uns{% endblock %}
-{% block body %}
-    {% for profile in all_profiles %}
-        <h1>email: {{ profile.email }} - username: {{ profile.username }} - superuser: {{ profile.is_superuser }} - staff: {{ profile.is_staff }} active: {{ profile.is_active }}</h1>
-    {% endfor %}
-{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'webauftritt/base.html' %}
+{% load static %}
+{% block title %}Galerie{% endblock %}
+{% block body %}
+
+    <section class="gallerie-block ">
+        <div class="container">
+            <div class="heading">
+                <h1 class="display-4">Galerie</h1>
+                <hr>
+            </div>
+
+            <div class="row no-gutters">
+                {% for key, value in images_dict.items %}
+                    <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                        <a class="lightbox" href="../../static/webauftritt/images/{{ key }}">
+                            <img class="img-fluid" src="../../static/webauftritt/images/{{ key }}">
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.gallerie-block', {animation: 'slideIn'});
+    </script>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'mitgliederbereich/base.html' %}
+{% load static %}
+{% block title %}Mistplan{% endblock %}
+{% block body %}
+    <div>
+        <div class="clearfix">
+            <ul>
+                <li class="li_Links"><a class="btnMistplan btn-info left" href="{% url 'mistplan' %}?{{ prev_month }}"> << </a></li>
+                <li class="li_Links"><a class="btnMistplan btn-info right" href="{% url 'mistplan' %}?{{ next_month }}"> >> </a></li>
+            </ul>
+        </div>
+        <div><table>
+            {{ mistplan }}
+            </table>
+        </div>
+    </div>
+    <script>
+        function nameMistplan(button, horsePower) {
+            const url = `/mitglieder/mistplan/${button.value}/${horsePower}`;
+            const request = {
+                method: "POST",
+                mode: "same-origin", // no-cors, cors, *same-origin
+                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: "same-origin",
+            };
+            fetch(url, request)
+                .then(response => {
+
+                    if (response.status === 200) {
+                        response.json().then(body => button.innerHTML = body.name).catch(error => console.log(error));
+                    }
+                })
+                .catch(error => {
+                    console.log(`Fehler beim einfuegen: ${error}`);
+                });
+        }
+    </script>
+
+{% endblock %}
