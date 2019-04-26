@@ -1,19 +1,13 @@
 import os
-import sys
 
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
-from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.db.models import Q
+
 from django.core.mail import send_mail
-from django.core.mail import BadHeaderError, EmailMessage
+from django.core.mail import BadHeaderError
 from django.http import HttpResponse
 
-from reithof_site import settings
 from .forms import ProfileForm, CreateEintrag, CreateKurs
-from .models import Profile, Eintrag, Kurs
+from .models import Profile, Eintrag, Kurs, Pferd
 
 
 # import requests
@@ -58,7 +52,10 @@ def galerie(request):
 
 
 def unsere_pferde(request):
-    return render(request, 'reithof_organizer/unsere_pferde.html')
+    profile = get_object_or_404(Profile, email="admin@admin.com")
+    all_pferde = Pferd.objects.all().filter(besitzer=profile)
+
+    return render(request, 'reithof_organizer/unsere_pferde.html', {'all_pferde': all_pferde})
 
 
 def news(request):

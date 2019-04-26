@@ -88,7 +88,8 @@ button a{
 
 /*--Leaflet--*/
 #pferd_navigation{
-    height: 600px;
+    height: 500px;
+    width: 500px;
 }
 
 /*----------------------Mistplan-------------------------*/

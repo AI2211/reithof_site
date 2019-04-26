@@ -2,7 +2,15 @@
 {% load static %}
 {% block title %}Kurse{% endblock %}
 {% block body %}
-<h2>Meine Kurse: </h2>
+    <div class="container-fluid padding">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Meine Kurse:</h1>
+            </div>
+            <hr>
+
+        </div>
+    </div>
 {% if not kurse %}
     <h2>In keinem Kurs eingetragen</h2>
     {% else %}

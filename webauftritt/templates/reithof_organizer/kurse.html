@@ -28,11 +28,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ kurs.name }}</h5>
                         <p class="card-text">{{ kurs.beschreibung }}</p>
-                        {% if user.is_superuser %}
-                            <a href="{% url 'delete_kurs' kurs.pk %}">
-                                <button class="btn float-right">Löschen</button>
-                            </a>
-                        {% endif %}
+
                         {% if user.is_staff %}
                             <h2>Teilnehmerliste: </h2>
                             {% if kurs.profile_set.all %}
@@ -43,9 +39,15 @@
                                 <h3>-->Keine Anmeldungen<--</h3>
                             {% endif %}
                         {% endif %}
+                        {% if user.is_superuser %}
+                            <a href="{% url 'delete_kurs' kurs.pk %}">
+                                <button class="btn float-right">Löschen</button>
+                            </a>
+                        {% endif %}
                         {% if user.is_authenticated %}
-                            <a class="btn btn-primary" href="{% url 'eintragen_kurs' kurs.pk %}"
-                               id="kurs_button{{ kurs.pk }}">Kurs beitreten</a>
+                            <a href="{% url 'eintragen_kurs' kurs.pk %}">
+                                <button class="btn float-left" id="kurs_button{{ kurs.pk }}">Kurs beitreten</button>
+                            </a>
                             {% if user.Kurse.all %}
                                 {% for user_kurs in user.Kurse.all %}
                                     {% if user_kurs.pk == kurs.pk %}
@@ -68,19 +70,19 @@
 
     {% if user.is_superuser %}
         <div class="row justify-content-center mx-auto">
-    <div class="col-lg-4 col-md-8">
-        <div class="card">
-            <div class="card-body">
-                <h2>Kurs hinzufügen</h2>
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form|crispy}}
-                    <button class="btn" type="submit">Kurs hinzufügen</button>
-                </form>
+            <div class="col-lg-4 col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Kurs hinzufügen</h2>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button class="btn" type="submit">Kurs hinzufügen</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
     {% endif %}
 
 {% endblock %}

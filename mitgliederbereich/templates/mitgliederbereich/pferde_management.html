@@ -3,12 +3,24 @@
 {% load crispy_forms_tags %}
 {% block title %}Meine Pferde{% endblock %}
 {% block body %}
-<h2>Meine Pferde: </h2>
+        <div class="container-fluid padding">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Meine Pferde:</h1>
+            </div>
+            <hr>
+
+        </div>
+    </div>
 {% if not all_user_pferde %}
     <h2>Keine Pferde vorhanden</h2>
     {% else %}
     {% for pferd in all_user_pferde %}
-        <a href="{% url 'pferd_standort' pferd.pk %}">{{ pferd.rufname }}</a>
+        {% if pferd.bild %}
+        <a href="{% url 'pferd_standort' pferd.pk %}"><img src="{{ pferd.bild.url }}" width="300" height="300"></a>
+        {% else %}
+        <a href="{% url 'pferd_standort' pferd.pk %}">KEIN BILD</a>
+        {% endif %}
     {% endfor %}
 {% endif %}
 
@@ -17,7 +29,7 @@
         <div class="card">
             <div class="card-body">
                 <h2>Pferd hinzufügen</h2>
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|crispy}}
                     <button class="btn" type="submit">Speichern</button>

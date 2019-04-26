@@ -35,8 +35,8 @@ urlpatterns = [
 
     path(r'password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='reithof_organizer/password_reset_complete.html'), name='password_reset_complete'),
 
-    path(r'delete_kurs/<int:pk>/', views.delete_kurs, name='delete_kurs'),
-    path(r'delete_news/<int:pk>/', views.delete_news, name='delete_news'),
+    path(r'delete-kurs/<int:pk>/', views.delete_kurs, name='delete_kurs'),
+    path(r'delete-news/<int:pk>/', views.delete_news, name='delete_news'),
 
     path(r'add-user-kurs/<int:pk>', views.eintragen_kurs, name='eintragen_kurs'),
     path(r'remove-user-kurs/<int:pk>', views.austragen_kurs, name='ausgetragen_kurs'),

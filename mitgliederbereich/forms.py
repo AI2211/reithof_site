@@ -114,3 +114,8 @@ class AddPferdForm(forms.ModelForm):
     class Meta:
         model = Pferd
         fields = '__all__'
+
+class EditPferdForm(forms.ModelForm):
+    class Meta:
+        model = Pferd
+        fields = '__all__'

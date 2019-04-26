@@ -135,8 +135,9 @@ class Pferd(models.Model):
     besitzer = models.ForeignKey(Profile, on_delete=models.CASCADE)
     offizieller_name = models.CharField(max_length=100)
     rufname = models.CharField(max_length=100)
-    geburtstag = models.DateTimeField(blank=True)
+    geburtstag = models.DateTimeField(blank=True, null=True)
     kategorie = models.ForeignKey(Kategorie, on_delete=models.CASCADE)
+    bild = models.ImageField(blank=True)
 
     class Meta:
         verbose_name = _('Pferd')

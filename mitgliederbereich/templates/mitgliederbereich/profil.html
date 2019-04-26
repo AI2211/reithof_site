@@ -134,10 +134,7 @@
             {% endfor %}
         {% endif %}
 
-        <h2>Meine Kurse: </h2>
-        {% for kurs in user.Kurse.all %}
-            {{ kurs.name }}
-        {% endfor %}
+
 
         <a href="{% url 'email_change' %}">
             E-Mail-Adresse ändern

@@ -31,11 +31,15 @@ urlpatterns = [
 
     path(r'edit-profil-success/', views.edit_profil_success, name='edit_profil_success'),
 
+    path(r'edit-pferd/<int:pk>/', views.edit_pferd, name='edit_pferd'),
+    path(r'edit-pferd-success/', views.edit_pferd_success, name='edit_pferd_success'),
+
     path(r'calendar', views.CalendarView.as_view(), name='calendar'),
     path(r'mistplan', views.MistplanView.as_view(), name='mistplan'),
     path(r'mistplan/<str:date>/<int:horsePower>', views.MistplanDetail.as_view()),
     path(r'event/new', views.event, name='event_new'),
 	path(r'event/edit/<event_id>/', views.event, name='event_edit'),
 
+    path(r'delete-pferd/<int:pk>/', views.delete_pferd, name="delete_pferd"),
 
 ]

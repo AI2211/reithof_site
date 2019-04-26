@@ -1,7 +1,5 @@
-from django.http import HttpResponse
-from django.contrib.auth.forms import get_user_model
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import EmailChangeForm, ProfileChangeForm, AddPferdForm
+from .forms import EmailChangeForm, ProfileChangeForm, AddPferdForm, EditPferdForm
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -110,7 +108,7 @@ def pferde_management(request):
     all_user_pferde = Pferd.objects.all().filter(besitzer=request.user)
 
     if request.method == "POST":
-        form = AddPferdForm(request.POST)
+        form = AddPferdForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             form = AddPferdForm()
@@ -225,3 +223,24 @@ class MistplanDetail(View):
             'name': username
         }
         return JsonResponse(data)
+
+
+def delete_pferd(request, pk):
+    pferd = get_object_or_404(Pferd, pk=pk)
+    pferd.delete()
+
+    return render(request, 'mitgliederbereich/deleted_pferd.html', {'pferd': pferd})
+
+def edit_pferd(request, pk):
+    pferd = get_object_or_404(Pferd, pk=pk)
+    if request.method == 'POST':
+        form = EditPferdForm(request.POST, instance=pferd)
+        if form.is_valid():
+            form.save()
+            return redirect('edit_pferd_success')
+    else:
+        form = EditPferdForm()
+    return render(request, 'mitgliederbereich/edit_pferd.html', {'form': form})
+
+def edit_pferd_success(request):
+    return render(request, 'mitgliederbereich/pferde_management.html')
