@@ -13,7 +13,7 @@ from .models import Profile, Eintrag, Kurs, Pferd
 # import requests
 
 def index(request):
-    return render(request, 'reithof_organizer/ritterstall.html')
+    return render(request, 'webauftritt/ritterstall.html')
 
 
 # def index(request):
@@ -24,7 +24,7 @@ def index(request):
 def ueber_uns(request):
     all_profiles = Profile.objects.all()
     context = {'all_profiles': all_profiles}
-    return render(request, 'reithof_organizer/ueber_uns.html', context)
+    return render(request, 'webauftritt/ueber_uns.html', context)
 
 
 def kurse(request):
@@ -37,7 +37,7 @@ def kurse(request):
             form = CreateKurs()
     else:
         form = CreateKurs()
-    return render(request, 'reithof_organizer/kurse.html', {'all_kurs': all_kurs, 'form': form})
+    return render(request, 'webauftritt/kurse.html', {'all_kurs': all_kurs, 'form': form})
 
 
 def galerie(request):
@@ -48,14 +48,14 @@ def galerie(request):
         print(file)
     images_dict = {key: i for i, key in enumerate(dirs)}
     #files = os.listdir(os.path.join(settings.STATIC_ROOT, "webauftritt/images"))
-    return render(request, 'reithof_organizer/galerie.html', {'images_dict': images_dict})
+    return render(request, 'webauftritt/galerie.html', {'images_dict': images_dict})
 
 
 def unsere_pferde(request):
     profile = get_object_or_404(Profile, email="admin@admin.com")
     all_pferde = Pferd.objects.all().filter(besitzer=profile)
 
-    return render(request, 'reithof_organizer/unsere_pferde.html', {'all_pferde': all_pferde})
+    return render(request, 'webauftritt/unsere_pferde.html', {'all_pferde': all_pferde})
 
 
 def news(request):
@@ -69,7 +69,7 @@ def news(request):
             eintrag.save()
     else:
         form = CreateEintrag()
-    return render(request, 'reithof_organizer/news.html', {'form': form, 'all_eintrag': all_eintrag})
+    return render(request, 'webauftritt/news.html', {'form': form, 'all_eintrag': all_eintrag})
 
 
 def kontakt(request):
@@ -96,14 +96,14 @@ def kontakt(request):
             return HttpResponse('Invalid header found.')
         return HttpResponse('Vielen Dank für deine Nachricht')
     else:
-        return render(request, 'reithof_organizer/kontakt.html')
+        return render(request, 'webauftritt/kontakt.html')
 
 
 def impressum(request):
-    return render(request, 'reithof_organizer/impressum.html')
+    return render(request, 'webauftritt/impressum.html')
 
 def datenschutz(request):
-    return render(request, 'reithof_organizer/datenschutz.html')
+    return render(request, 'webauftritt/datenschutz.html')
 
 
 def register(request):
@@ -119,31 +119,31 @@ def register(request):
             return redirect('login')
     else:
         profile_form = ProfileForm()
-    return render(request, 'reithof_organizer/register.html', {'profile_form': profile_form})
+    return render(request, 'webauftritt/register.html', {'profile_form': profile_form})
 
 
 def delete_kurs(request, pk):
     kurs = get_object_or_404(Kurs, pk=pk)
     kurs.delete()
 
-    return render(request, 'reithof_organizer/deleted_kurs.html', {'kurs': kurs})
+    return render(request, 'webauftritt/deleted_kurs.html', {'kurs': kurs})
 
 def eintragen_kurs(request, pk):
     kurs = get_object_or_404(Kurs, pk=pk)
     request.user.Kurse.add(kurs)
     request.user.save()
 
-    return render(request, 'reithof_organizer/added_user_kurs.html', {'kurs': kurs})
+    return render(request, 'webauftritt/added_user_kurs.html', {'kurs': kurs})
 
 def austragen_kurs(request, pk):
     kurs = get_object_or_404(Kurs, pk=pk)
     request.user.Kurse.remove(kurs)
     request.user.save()
 
-    return render(request, 'reithof_organizer/removed_user_kurs.html', {'kurs': kurs})
+    return render(request, 'webauftritt/removed_user_kurs.html', {'kurs': kurs})
 
 def delete_news(request, pk):
     eintrag = get_object_or_404(Eintrag, pk=pk)
     eintrag.delete()
 
-    return render(request, 'reithof_organizer/deleted_news.html', {'eintrag': eintrag})
+    return render(request, 'webauftritt/deleted_news.html', {'eintrag': eintrag})

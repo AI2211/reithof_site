@@ -1,13 +1,15 @@
-{% extends 'reithof_organizer/base.html' %}
-{% block title %}Ausgetragem{% endblock %}
+{% extends 'webauftritt/base.html' %}
+{% block title %}Eingetragen{% endblock %}
 {% block body %}
-    <div class="container">
+
+        <div class="container">
         <div class="role welcome text-center">
             <div class="col-12">
-                <h1 class="display-4">{{ request.user.email }} aus {{ kurs.name }} ausgetragen!</h1>
+                <h1 class="display-4">{{ request.user.email }} in {{ kurs.name }} eingetragen!</h1>
             </div>
         </div>
     </div>
+<h1></h1>
     <script> window.setTimeout(function(){
     window.location.href = "{% url 'kurse' %}";
   }, 2000);;</script>

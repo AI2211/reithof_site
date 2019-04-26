@@ -1,20 +1,18 @@
-{% extends 'reithof_organizer/base.html' %}
-{% load static %}
-{% block title %}Galerie{% endblock %}
+{% extends 'webauftritt/base.html' %}
+{% block title %}Unsere Pferde{% endblock %}
 {% block body %}
-
     <section class="gallerie-block ">
         <div class="container">
             <div class="heading">
-                <h1 class="display-4">Galerie</h1>
+                <h1 class="display-4">Unsere Pferde</h1>
                 <hr>
             </div>
 
             <div class="row no-gutters">
-                {% for key, value in images_dict.items %}
+                {% for pferd in all_pferde %}
                     <div class="col-md-6 col-lg-4 item zoom-on-hover">
-                        <a class="lightbox" href="../../static/reithof_organizer/images/{{ key }}">
-                            <img class="img-fluid" src="../../static/reithof_organizer/images/{{ key }}">
+                        <a class="lightbox" href="{{ pferd.bild.url }}">
+                            <img class="img-fluid" src="{{ pferd.bild.url }}">
                         </a>
                     </div>
                 {% endfor %}
@@ -25,5 +23,4 @@
     <script>
         baguetteBox.run('.gallerie-block', {animation: 'slideIn'});
     </script>
-
 {% endblock %}
